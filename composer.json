@@ -2,11 +2,11 @@
     "name": "bondforge/bondforge-sdk-php",
     "description": "Official PHP SDK for the BondForge API",
     "type": "library",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "authors": [
         {
-            "name": "BondForge Support",
-            "email": "support@bondforge.com"
+            "name": "BondForge Engineering",
+            "email": "engineering@bondforge.com"
         }
     ],
     "require": {
