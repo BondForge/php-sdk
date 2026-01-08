@@ -7,6 +7,7 @@ namespace BondForge\Sdk;
 use BondForge\Sdk\Exception\ApiException;
 use BondForge\Sdk\Generated\Api\AgencyApi;
 use BondForge\Sdk\Generated\Api\AgentApi;
+use BondForge\Sdk\Generated\Api\AuthenticationApi;
 use BondForge\Sdk\Generated\Api\BalanceApi;
 use BondForge\Sdk\Generated\Api\BondApi;
 use BondForge\Sdk\Generated\Api\BondCommentApi;
@@ -23,6 +24,7 @@ use BondForge\Sdk\Generated\Api\UDFGroupApi;
 use BondForge\Sdk\Generated\Api\UDFTypeApi;
 use BondForge\Sdk\Generated\ApiException as GeneratedApiException;
 use BondForge\Sdk\Generated\Configuration;
+use BondForge\Sdk\Generated\Model\Credentials;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 
@@ -40,10 +42,27 @@ final class BondForgeClient
     public static function withApiKeys(string $apiKey, string $apiSecret, array $options = []) : self
     {
         $config = new Configuration();
-        $config->setApiKey('X-API-KEY', $apiKey);
-        $config->setApiKey('X-API-SECRET', $apiSecret);
 
-        return self::createFromOptions($config, $options);
+        $instance = self::createFromOptions($config, $options);
+        $instance->authenticate($apiKey, $apiSecret);
+
+        return $instance;
+    }
+
+    private function authenticate(string $apiKey, string $apiSecret) : void
+    {
+        $authApi = new AuthenticationApi($this->httpClient, $this->config);
+        $credentials = new Credentials([
+            'apiKey' => $apiKey,
+            'apiSecret' => $apiSecret,
+        ]);
+
+        try {
+            $tokenResponse = $authApi->postApiAuthAuthenticate($credentials);
+            $this->config->setAccessToken($tokenResponse->getToken());
+        } catch (GeneratedApiException $e) {
+            throw ApiException::fromGenerated($e);
+        }
     }
 
     public static function withJwt(string $jwt, array $options = []) : self
@@ -61,6 +80,10 @@ final class BondForgeClient
         }
         if (isset($options['userAgent'])) {
             $config->setUserAgent($options['userAgent']);
+        }
+
+        if (isset($options['httpClient']) && $options['httpClient'] instanceof ClientInterface) {
+            return new self($config, $options['httpClient']);
         }
 
         $guzzleOptions = [];

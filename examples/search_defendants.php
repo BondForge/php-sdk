@@ -9,7 +9,7 @@ use BondForge\Sdk\Pagination\HydraIterator;
 $client = BondForgeClient::withApiKeys(
     'your-api-key',
     'your-api-secret',
-    ['baseUrl' => 'https://api.bondforge.com']
+    ['baseUrl' => 'https://api.bondforge.net']
 );
 
 echo "Searching for defendants with last name 'Smith'...\n";

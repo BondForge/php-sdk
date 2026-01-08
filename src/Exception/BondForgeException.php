@@ -6,6 +6,6 @@ namespace BondForge\Sdk\Exception;
 
 use Exception;
 
-final class BondForgeException extends Exception
+class BondForgeException extends Exception
 {
 }

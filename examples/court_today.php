@@ -7,7 +7,7 @@ use BondForge\Sdk\BondForgeClient;
 // Initialize client with JWT
 $client = BondForgeClient::withJwt(
     'your-jwt-token',
-    ['baseUrl' => 'https://api.bondforge.com']
+    ['baseUrl' => 'https://api.bondforge.net']
 );
 
 echo "Retrieving courts...\n";
