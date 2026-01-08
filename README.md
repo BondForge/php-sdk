@@ -1,6 +1,6 @@
 # BondForge PHP SDK
 
-Official PHP SDK for the [BondForge API](https://bondforge.com).
+Official PHP SDK for the [BondForge API](https://docs.bondforgehq.com/API/).
 
 ## Installation
 
