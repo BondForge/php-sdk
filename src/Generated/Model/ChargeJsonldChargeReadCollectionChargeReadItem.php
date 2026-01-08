@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ChargeJsonldChargeReadCollectionChargeReadItem
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * ChargeJsonldChargeReadCollectionChargeReadItem Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,14 +60,14 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
       * @var string[]
       */
     protected static $openAPITypes = [
-        'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'id' => 'int',
-        'number' => 'string',
+        'atContext'   => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
+        'atId'        => 'string',
+        'atType'      => 'string',
+        'id'          => 'int',
+        'number'      => 'string',
         'description' => 'string',
-        'bond' => 'string',
-        'courts' => 'string[]'
+        'bond'        => 'string',
+        'courts'      => 'string[]',
     ];
 
     /**
@@ -76,36 +78,36 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'id' => null,
-        'number' => null,
+        'atContext'   => null,
+        'atId'        => null,
+        'atType'      => null,
+        'id'          => null,
+        'number'      => null,
         'description' => null,
-        'bond' => 'iri-reference',
-        'courts' => 'iri-reference'
+        'bond'        => 'iri-reference',
+        'courts'      => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'id' => false,
-        'number' => false,
+        'atContext'   => false,
+        'atId'        => false,
+        'atType'      => false,
+        'id'          => false,
+        'number'      => false,
         'description' => true,
-        'bond' => false,
-        'courts' => false
+        'bond'        => false,
+        'courts'      => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -134,7 +136,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -142,9 +144,9 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -152,9 +154,9 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -165,7 +167,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -176,7 +178,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -188,14 +190,14 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
      * @var string[]
      */
     protected static $attributeMap = [
-        'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'id' => 'id',
-        'number' => 'number',
+        'atContext'   => '@context',
+        'atId'        => '@id',
+        'atType'      => '@type',
+        'id'          => 'id',
+        'number'      => 'number',
         'description' => 'description',
-        'bond' => 'bond',
-        'courts' => 'courts'
+        'bond'        => 'bond',
+        'courts'      => 'courts',
     ];
 
     /**
@@ -204,14 +206,14 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
      * @var string[]
      */
     protected static $setters = [
-        'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'id' => 'setId',
-        'number' => 'setNumber',
+        'atContext'   => 'setAtContext',
+        'atId'        => 'setAtId',
+        'atType'      => 'setAtType',
+        'id'          => 'setId',
+        'number'      => 'setNumber',
         'description' => 'setDescription',
-        'bond' => 'setBond',
-        'courts' => 'setCourts'
+        'bond'        => 'setBond',
+        'courts'      => 'setCourts',
     ];
 
     /**
@@ -220,14 +222,14 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
      * @var string[]
      */
     protected static $getters = [
-        'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'id' => 'getId',
-        'number' => 'getNumber',
+        'atContext'   => 'getAtContext',
+        'atId'        => 'getAtId',
+        'atType'      => 'getAtType',
+        'id'          => 'getId',
+        'number'      => 'getNumber',
         'description' => 'getDescription',
-        'bond' => 'getBond',
-        'courts' => 'getCourts'
+        'bond'        => 'getBond',
+        'courts'      => 'getCourts',
     ];
 
     /**
@@ -271,7 +273,6 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -306,7 +307,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -330,6 +331,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -344,11 +346,10 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -358,7 +359,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -503,8 +504,8 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('description', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -570,11 +571,11 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -582,7 +583,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -600,7 +601,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -612,11 +613,11 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -631,7 +632,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -643,7 +644,7 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -657,5 +658,3 @@ class ChargeJsonldChargeReadCollectionChargeReadItem implements ModelInterface, 
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

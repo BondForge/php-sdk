@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * DefendantApi
  * PHP version 8.1
@@ -28,6 +30,10 @@
 
 namespace BondForge\Sdk\Generated\Api;
 
+use BondForge\Sdk\Generated\ApiException;
+use BondForge\Sdk\Generated\Configuration;
+use BondForge\Sdk\Generated\HeaderSelector;
+use BondForge\Sdk\Generated\ObjectSerializer;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
@@ -37,11 +43,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use BondForge\Sdk\Generated\ApiException;
-use BondForge\Sdk\Generated\Configuration;
-use BondForge\Sdk\Generated\FormDataProcessor;
-use BondForge\Sdk\Generated\HeaderSelector;
-use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * DefendantApi Class Doc Comment
@@ -51,7 +52,7 @@ use BondForge\Sdk\Generated\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DefendantApi
+final class DefendantApi
 {
     /**
      * @var ClientInterface
@@ -73,7 +74,7 @@ class DefendantApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'apiDefendantsGetCollection' => [
             'application/json',
@@ -105,12 +106,12 @@ class DefendantApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
-        $this->client = $client ?: new Client();
-        $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->client         = $client ?: new Client();
+        $this->config         = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->hostIndex = $hostIndex;
+        $this->hostIndex      = $hostIndex;
     }
 
     /**
@@ -118,7 +119,7 @@ class DefendantApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex($hostIndex) : void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -151,13 +152,14 @@ class DefendantApi
      * @param  string|null $firstName  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ApiDefendantsGetCollection200Response
      */
     public function apiDefendantsGetCollection($page = 1, $lastName = null, $firstName = null, string $contentType = self::contentTypes['apiDefendantsGetCollection'][0])
     {
-        list($response) = $this->apiDefendantsGetCollectionWithHttpInfo($page, $lastName, $firstName, $contentType);
+        [$response] = $this->apiDefendantsGetCollectionWithHttpInfo($page, $lastName, $firstName, $contentType);
+
         return $response;
     }
 
@@ -171,7 +173,7 @@ class DefendantApi
      * @param  string|null $firstName  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ApiDefendantsGetCollection200Response, HTTP status code, HTTP response headers (array of strings)
      */
@@ -181,6 +183,7 @@ class DefendantApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -188,21 +191,20 @@ class DefendantApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ApiDefendantsGetCollection200Response',
@@ -211,18 +213,16 @@ class DefendantApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -237,12 +237,12 @@ class DefendantApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ApiDefendantsGetCollection200Response',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -267,8 +267,9 @@ class DefendantApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -287,7 +288,7 @@ class DefendantApi
     public function apiDefendantsGetCollectionAsyncWithHttpInfo($page = 1, $lastName = null, $firstName = null, string $contentType = self::contentTypes['apiDefendantsGetCollection'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ApiDefendantsGetCollection200Response';
-        $request = $this->apiDefendantsGetCollectionRequest($page, $lastName, $firstName, $contentType);
+        $request    = $this->apiDefendantsGetCollectionRequest($page, $lastName, $firstName, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -305,24 +306,26 @@ class DefendantApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -334,21 +337,17 @@ class DefendantApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiDefendantsGetCollectionRequest($page = 1, $lastName = null, $firstName = null, string $contentType = self::contentTypes['apiDefendantsGetCollection'][0])
     {
 
-
-
-
-
         $resourcePath = '/api/v1/defendants';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
+        $httpBody     = '';
+        $multipart    = false;
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -357,7 +356,7 @@ class DefendantApi
             'integer', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -366,7 +365,7 @@ class DefendantApi
             'string', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -375,16 +374,13 @@ class DefendantApi
             'string', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -395,8 +391,8 @@ class DefendantApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -435,16 +431,17 @@ class DefendantApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -456,7 +453,7 @@ class DefendantApi
      * @param  string $id Defendant identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -473,7 +470,7 @@ class DefendantApi
      * @param  string $id Defendant identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -483,6 +480,7 @@ class DefendantApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -490,19 +488,18 @@ class DefendantApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -511,12 +508,12 @@ class DefendantApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -539,8 +536,9 @@ class DefendantApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -557,7 +555,7 @@ class DefendantApi
     public function apiDefendantsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiDefendantsIdDelete'][0])
     {
         $returnType = '';
-        $request = $this->apiDefendantsIdDeleteRequest($id, $contentType);
+        $request    = $this->apiDefendantsIdDeleteRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -566,20 +564,22 @@ class DefendantApi
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -589,7 +589,7 @@ class DefendantApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiDefendantsIdDeleteRequest($id, string $contentType = self::contentTypes['apiDefendantsIdDelete'][0])
     {
@@ -597,34 +597,30 @@ class DefendantApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiDefendantsIdDelete'
+                'Missing the required parameter $id when calling apiDefendantsIdDelete',
             );
         }
 
-
         $resourcePath = '/api/v1/defendants/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -635,8 +631,8 @@ class DefendantApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -675,16 +671,17 @@ class DefendantApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -696,13 +693,14 @@ class DefendantApi
      * @param  string $id Defendant identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiDefendantsIdGet($id, string $contentType = self::contentTypes['apiDefendantsIdGet'][0])
     {
-        list($response) = $this->apiDefendantsIdGetWithHttpInfo($id, $contentType);
+        [$response] = $this->apiDefendantsIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -714,7 +712,7 @@ class DefendantApi
      * @param  string $id Defendant identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -724,6 +722,7 @@ class DefendantApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -731,21 +730,20 @@ class DefendantApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadItem',
@@ -760,18 +758,16 @@ class DefendantApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -786,20 +782,21 @@ class DefendantApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -822,8 +819,9 @@ class DefendantApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -840,7 +838,7 @@ class DefendantApi
     public function apiDefendantsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiDefendantsIdGet'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadItem';
-        $request = $this->apiDefendantsIdGetRequest($id, $contentType);
+        $request    = $this->apiDefendantsIdGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -858,24 +856,26 @@ class DefendantApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -885,7 +885,7 @@ class DefendantApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiDefendantsIdGetRequest($id, string $contentType = self::contentTypes['apiDefendantsIdGet'][0])
     {
@@ -893,34 +893,30 @@ class DefendantApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiDefendantsIdGet'
+                'Missing the required parameter $id when calling apiDefendantsIdGet',
             );
         }
 
-
         $resourcePath = '/api/v1/defendants/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -931,8 +927,8 @@ class DefendantApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -971,16 +967,17 @@ class DefendantApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -993,13 +990,14 @@ class DefendantApi
      * @param  \BondForge\Sdk\Generated\Model\DefendantDefendantWriteJsonMergePatch $defendantDefendantWriteJsonMergePatch The updated Defendant resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiDefendantsIdPatch($id, $defendantDefendantWriteJsonMergePatch, string $contentType = self::contentTypes['apiDefendantsIdPatch'][0])
     {
-        list($response) = $this->apiDefendantsIdPatchWithHttpInfo($id, $defendantDefendantWriteJsonMergePatch, $contentType);
+        [$response] = $this->apiDefendantsIdPatchWithHttpInfo($id, $defendantDefendantWriteJsonMergePatch, $contentType);
+
         return $response;
     }
 
@@ -1012,7 +1010,7 @@ class DefendantApi
      * @param  \BondForge\Sdk\Generated\Model\DefendantDefendantWriteJsonMergePatch $defendantDefendantWriteJsonMergePatch The updated Defendant resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1022,6 +1020,7 @@ class DefendantApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1029,21 +1028,20 @@ class DefendantApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem',
@@ -1070,18 +1068,16 @@ class DefendantApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1096,36 +1092,39 @@ class DefendantApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1149,8 +1148,9 @@ class DefendantApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1168,7 +1168,7 @@ class DefendantApi
     public function apiDefendantsIdPatchAsyncWithHttpInfo($id, $defendantDefendantWriteJsonMergePatch, string $contentType = self::contentTypes['apiDefendantsIdPatch'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem';
-        $request = $this->apiDefendantsIdPatchRequest($id, $defendantDefendantWriteJsonMergePatch, $contentType);
+        $request    = $this->apiDefendantsIdPatchRequest($id, $defendantDefendantWriteJsonMergePatch, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1186,24 +1186,26 @@ class DefendantApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1214,7 +1216,7 @@ class DefendantApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiDefendantsIdPatchRequest($id, $defendantDefendantWriteJsonMergePatch, string $contentType = self::contentTypes['apiDefendantsIdPatch'][0])
     {
@@ -1222,41 +1224,37 @@ class DefendantApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiDefendantsIdPatch'
+                'Missing the required parameter $id when calling apiDefendantsIdPatch',
             );
         }
 
         // verify the required parameter 'defendantDefendantWriteJsonMergePatch' is set
         if ($defendantDefendantWriteJsonMergePatch === null || (is_array($defendantDefendantWriteJsonMergePatch) && count($defendantDefendantWriteJsonMergePatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $defendantDefendantWriteJsonMergePatch when calling apiDefendantsIdPatch'
+                'Missing the required parameter $defendantDefendantWriteJsonMergePatch when calling apiDefendantsIdPatch',
             );
         }
 
-
         $resourcePath = '/api/v1/defendants/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1274,8 +1272,8 @@ class DefendantApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1314,16 +1312,17 @@ class DefendantApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PATCH',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1336,13 +1335,14 @@ class DefendantApi
      * @param  \BondForge\Sdk\Generated\Model\DefendantDefendantWrite $defendantDefendantWrite The updated Defendant resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiDefendantsIdPut($id, $defendantDefendantWrite, string $contentType = self::contentTypes['apiDefendantsIdPut'][0])
     {
-        list($response) = $this->apiDefendantsIdPutWithHttpInfo($id, $defendantDefendantWrite, $contentType);
+        [$response] = $this->apiDefendantsIdPutWithHttpInfo($id, $defendantDefendantWrite, $contentType);
+
         return $response;
     }
 
@@ -1355,7 +1355,7 @@ class DefendantApi
      * @param  \BondForge\Sdk\Generated\Model\DefendantDefendantWrite $defendantDefendantWrite The updated Defendant resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1365,6 +1365,7 @@ class DefendantApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1372,21 +1373,20 @@ class DefendantApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem',
@@ -1413,18 +1413,16 @@ class DefendantApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1439,36 +1437,39 @@ class DefendantApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1492,8 +1493,9 @@ class DefendantApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1511,7 +1513,7 @@ class DefendantApi
     public function apiDefendantsIdPutAsyncWithHttpInfo($id, $defendantDefendantWrite, string $contentType = self::contentTypes['apiDefendantsIdPut'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem';
-        $request = $this->apiDefendantsIdPutRequest($id, $defendantDefendantWrite, $contentType);
+        $request    = $this->apiDefendantsIdPutRequest($id, $defendantDefendantWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1529,24 +1531,26 @@ class DefendantApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1557,7 +1561,7 @@ class DefendantApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsIdPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiDefendantsIdPutRequest($id, $defendantDefendantWrite, string $contentType = self::contentTypes['apiDefendantsIdPut'][0])
     {
@@ -1565,41 +1569,37 @@ class DefendantApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiDefendantsIdPut'
+                'Missing the required parameter $id when calling apiDefendantsIdPut',
             );
         }
 
         // verify the required parameter 'defendantDefendantWrite' is set
         if ($defendantDefendantWrite === null || (is_array($defendantDefendantWrite) && count($defendantDefendantWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $defendantDefendantWrite when calling apiDefendantsIdPut'
+                'Missing the required parameter $defendantDefendantWrite when calling apiDefendantsIdPut',
             );
         }
 
-
         $resourcePath = '/api/v1/defendants/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1617,8 +1617,8 @@ class DefendantApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1657,16 +1657,17 @@ class DefendantApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1678,13 +1679,14 @@ class DefendantApi
      * @param  \BondForge\Sdk\Generated\Model\DefendantDefendantWrite $defendantDefendantWrite The new Defendant resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld
      */
     public function apiDefendantsPost($defendantDefendantWrite, string $contentType = self::contentTypes['apiDefendantsPost'][0])
     {
-        list($response) = $this->apiDefendantsPostWithHttpInfo($defendantDefendantWrite, $contentType);
+        [$response] = $this->apiDefendantsPostWithHttpInfo($defendantDefendantWrite, $contentType);
+
         return $response;
     }
 
@@ -1696,7 +1698,7 @@ class DefendantApi
      * @param  \BondForge\Sdk\Generated\Model\DefendantDefendantWrite $defendantDefendantWrite The new Defendant resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1706,6 +1708,7 @@ class DefendantApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1713,21 +1716,20 @@ class DefendantApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem',
@@ -1748,18 +1750,16 @@ class DefendantApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1774,28 +1774,30 @@ class DefendantApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1818,8 +1820,9 @@ class DefendantApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1836,7 +1839,7 @@ class DefendantApi
     public function apiDefendantsPostAsyncWithHttpInfo($defendantDefendantWrite, string $contentType = self::contentTypes['apiDefendantsPost'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\DefendantJsonldDefendantReadCollectionDefendantReadItem';
-        $request = $this->apiDefendantsPostRequest($defendantDefendantWrite, $contentType);
+        $request    = $this->apiDefendantsPostRequest($defendantDefendantWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1854,24 +1857,26 @@ class DefendantApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1881,7 +1886,7 @@ class DefendantApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiDefendantsPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiDefendantsPostRequest($defendantDefendantWrite, string $contentType = self::contentTypes['apiDefendantsPost'][0])
     {
@@ -1889,26 +1894,21 @@ class DefendantApi
         // verify the required parameter 'defendantDefendantWrite' is set
         if ($defendantDefendantWrite === null || (is_array($defendantDefendantWrite) && count($defendantDefendantWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $defendantDefendantWrite when calling apiDefendantsPost'
+                'Missing the required parameter $defendantDefendantWrite when calling apiDefendantsPost',
             );
         }
 
-
         $resourcePath = '/api/v1/defendants';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1926,8 +1926,8 @@ class DefendantApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1966,16 +1966,17 @@ class DefendantApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -2009,8 +2010,8 @@ class DefendantApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
-    ): array {
+        ResponseInterface $response,
+    ) : array {
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
@@ -2022,11 +2023,11 @@ class DefendantApi
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
-                            $request->getUri()
+                            $request->getUri(),
                         ),
                         $response->getStatusCode(),
                         $response->getHeaders(),
-                        $content
+                        $content,
                     );
                 }
             }
@@ -2035,16 +2036,16 @@ class DefendantApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        int $statusCode,
+    ) : bool {
+        $left  = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

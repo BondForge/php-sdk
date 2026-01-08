@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * HydraCollectionBaseSchemaNoPaginationSearch
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * HydraCollectionBaseSchemaNoPaginationSearch Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,10 +60,10 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'atType' => 'string',
-        'template' => 'string',
+        'atType'                 => 'string',
+        'template'               => 'string',
         'variableRepresentation' => 'string',
-        'mapping' => '\BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearchMappingInner[]'
+        'mapping'                => '\BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearchMappingInner[]',
     ];
 
     /**
@@ -72,28 +74,28 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'atType' => null,
-        'template' => null,
+        'atType'                 => null,
+        'template'               => null,
         'variableRepresentation' => null,
-        'mapping' => null
+        'mapping'                => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'atType' => false,
-        'template' => false,
+        'atType'                 => false,
+        'template'               => false,
         'variableRepresentation' => false,
-        'mapping' => false
+        'mapping'                => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -122,7 +124,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -130,9 +132,9 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -140,9 +142,9 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -153,7 +155,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -164,7 +166,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -176,10 +178,10 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'atType' => '@type',
-        'template' => 'template',
+        'atType'                 => '@type',
+        'template'               => 'template',
         'variableRepresentation' => 'variableRepresentation',
-        'mapping' => 'mapping'
+        'mapping'                => 'mapping',
     ];
 
     /**
@@ -188,10 +190,10 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'atType' => 'setAtType',
-        'template' => 'setTemplate',
+        'atType'                 => 'setAtType',
+        'template'               => 'setTemplate',
         'variableRepresentation' => 'setVariableRepresentation',
-        'mapping' => 'setMapping'
+        'mapping'                => 'setMapping',
     ];
 
     /**
@@ -200,10 +202,10 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'atType' => 'getAtType',
-        'template' => 'getTemplate',
+        'atType'                 => 'getAtType',
+        'template'               => 'getTemplate',
         'variableRepresentation' => 'getVariableRepresentation',
-        'mapping' => 'getMapping'
+        'mapping'                => 'getMapping',
     ];
 
     /**
@@ -247,7 +249,6 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -278,7 +279,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -309,7 +310,6 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets atType
@@ -395,7 +395,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     /**
      * Gets mapping
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearchMappingInner[]|null
+     * @return HydraCollectionBaseSchemaNoPaginationSearchMappingInner[]|null
      */
     public function getMapping()
     {
@@ -405,7 +405,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     /**
      * Sets mapping
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearchMappingInner[]|null $mapping mapping
+     * @param HydraCollectionBaseSchemaNoPaginationSearchMappingInner[]|null $mapping mapping
      *
      * @return self
      */
@@ -421,11 +421,11 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -433,7 +433,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -451,7 +451,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -463,11 +463,11 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -482,7 +482,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -494,7 +494,7 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -508,5 +508,3 @@ class HydraCollectionBaseSchemaNoPaginationSearch implements ModelInterface, Arr
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

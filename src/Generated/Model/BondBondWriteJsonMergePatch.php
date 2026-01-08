@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * BondBondWriteJsonMergePatch
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * BondBondWriteJsonMergePatch Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,14 +60,14 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'bondDate' => '\DateTime',
-        'amount' => 'string',
+        'bondDate'  => '\DateTime',
+        'amount'    => 'string',
         'boundOver' => 'bool',
-        'closedAt' => '\DateTime',
+        'closedAt'  => '\DateTime',
         'defendant' => 'string',
-        'charges' => 'string[]',
-        'agent' => 'string',
-        'agency' => 'string'
+        'charges'   => 'string[]',
+        'agent'     => 'string',
+        'agency'    => 'string',
     ];
 
     /**
@@ -76,36 +78,36 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'bondDate' => 'date-time',
-        'amount' => null,
+        'bondDate'  => 'date-time',
+        'amount'    => null,
         'boundOver' => null,
-        'closedAt' => 'date-time',
+        'closedAt'  => 'date-time',
         'defendant' => 'iri-reference',
-        'charges' => 'iri-reference',
-        'agent' => 'iri-reference',
-        'agency' => 'iri-reference'
+        'charges'   => 'iri-reference',
+        'agent'     => 'iri-reference',
+        'agency'    => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'bondDate' => false,
-        'amount' => false,
+        'bondDate'  => false,
+        'amount'    => false,
         'boundOver' => false,
-        'closedAt' => true,
+        'closedAt'  => true,
         'defendant' => false,
-        'charges' => false,
-        'agent' => false,
-        'agency' => false
+        'charges'   => false,
+        'agent'     => false,
+        'agency'    => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -134,7 +136,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -142,9 +144,9 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -152,9 +154,9 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -165,7 +167,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -176,7 +178,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -188,14 +190,14 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'bondDate' => 'bondDate',
-        'amount' => 'amount',
+        'bondDate'  => 'bondDate',
+        'amount'    => 'amount',
         'boundOver' => 'boundOver',
-        'closedAt' => 'closedAt',
+        'closedAt'  => 'closedAt',
         'defendant' => 'defendant',
-        'charges' => 'charges',
-        'agent' => 'agent',
-        'agency' => 'agency'
+        'charges'   => 'charges',
+        'agent'     => 'agent',
+        'agency'    => 'agency',
     ];
 
     /**
@@ -204,14 +206,14 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'bondDate' => 'setBondDate',
-        'amount' => 'setAmount',
+        'bondDate'  => 'setBondDate',
+        'amount'    => 'setAmount',
         'boundOver' => 'setBoundOver',
-        'closedAt' => 'setClosedAt',
+        'closedAt'  => 'setClosedAt',
         'defendant' => 'setDefendant',
-        'charges' => 'setCharges',
-        'agent' => 'setAgent',
-        'agency' => 'setAgency'
+        'charges'   => 'setCharges',
+        'agent'     => 'setAgent',
+        'agency'    => 'setAgency',
     ];
 
     /**
@@ -220,14 +222,14 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'bondDate' => 'getBondDate',
-        'amount' => 'getAmount',
+        'bondDate'  => 'getBondDate',
+        'amount'    => 'getAmount',
         'boundOver' => 'getBoundOver',
-        'closedAt' => 'getClosedAt',
+        'closedAt'  => 'getClosedAt',
         'defendant' => 'getDefendant',
-        'charges' => 'getCharges',
-        'agent' => 'getAgent',
-        'agency' => 'getAgency'
+        'charges'   => 'getCharges',
+        'agent'     => 'getAgent',
+        'agency'    => 'getAgency',
     ];
 
     /**
@@ -271,7 +273,6 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -306,7 +307,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -337,7 +338,6 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets bondDate
@@ -443,8 +443,8 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'closedAt');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('closedAt', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('closedAt', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -564,11 +564,11 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -576,7 +576,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -594,7 +594,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -606,11 +606,11 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -625,7 +625,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -637,7 +637,7 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -651,5 +651,3 @@ class BondBondWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

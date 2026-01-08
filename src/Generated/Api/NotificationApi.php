@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * NotificationApi
  * PHP version 8.1
@@ -28,6 +30,10 @@
 
 namespace BondForge\Sdk\Generated\Api;
 
+use BondForge\Sdk\Generated\ApiException;
+use BondForge\Sdk\Generated\Configuration;
+use BondForge\Sdk\Generated\HeaderSelector;
+use BondForge\Sdk\Generated\ObjectSerializer;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
@@ -37,11 +43,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use BondForge\Sdk\Generated\ApiException;
-use BondForge\Sdk\Generated\Configuration;
-use BondForge\Sdk\Generated\FormDataProcessor;
-use BondForge\Sdk\Generated\HeaderSelector;
-use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * NotificationApi Class Doc Comment
@@ -51,7 +52,7 @@ use BondForge\Sdk\Generated\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class NotificationApi
+final class NotificationApi
 {
     /**
      * @var ClientInterface
@@ -73,7 +74,7 @@ class NotificationApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'apiNotificationsGetCollection' => [
             'application/json',
@@ -102,12 +103,12 @@ class NotificationApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
-        $this->client = $client ?: new Client();
-        $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->client         = $client ?: new Client();
+        $this->config         = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->hostIndex = $hostIndex;
+        $this->hostIndex      = $hostIndex;
     }
 
     /**
@@ -115,7 +116,7 @@ class NotificationApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex($hostIndex) : void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -147,13 +148,14 @@ class NotificationApi
      * @param  string|null $orderCreatedAt  (optional, default to 'asc')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ApiNotificationsGetCollection200Response
      */
     public function apiNotificationsGetCollection($page = 1, $orderCreatedAt = 'asc', string $contentType = self::contentTypes['apiNotificationsGetCollection'][0])
     {
-        list($response) = $this->apiNotificationsGetCollectionWithHttpInfo($page, $orderCreatedAt, $contentType);
+        [$response] = $this->apiNotificationsGetCollectionWithHttpInfo($page, $orderCreatedAt, $contentType);
+
         return $response;
     }
 
@@ -166,7 +168,7 @@ class NotificationApi
      * @param  string|null $orderCreatedAt  (optional, default to 'asc')
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ApiNotificationsGetCollection200Response, HTTP status code, HTTP response headers (array of strings)
      */
@@ -176,6 +178,7 @@ class NotificationApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -183,21 +186,20 @@ class NotificationApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ApiNotificationsGetCollection200Response',
@@ -206,18 +208,16 @@ class NotificationApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -232,12 +232,12 @@ class NotificationApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ApiNotificationsGetCollection200Response',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -261,8 +261,9 @@ class NotificationApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -280,7 +281,7 @@ class NotificationApi
     public function apiNotificationsGetCollectionAsyncWithHttpInfo($page = 1, $orderCreatedAt = 'asc', string $contentType = self::contentTypes['apiNotificationsGetCollection'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ApiNotificationsGetCollection200Response';
-        $request = $this->apiNotificationsGetCollectionRequest($page, $orderCreatedAt, $contentType);
+        $request    = $this->apiNotificationsGetCollectionRequest($page, $orderCreatedAt, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -298,24 +299,26 @@ class NotificationApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -326,20 +329,17 @@ class NotificationApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiNotificationsGetCollectionRequest($page = 1, $orderCreatedAt = 'asc', string $contentType = self::contentTypes['apiNotificationsGetCollection'][0])
     {
 
-
-
-
         $resourcePath = '/api/v1/notifications';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
+        $httpBody     = '';
+        $multipart    = false;
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -348,7 +348,7 @@ class NotificationApi
             'integer', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -357,16 +357,13 @@ class NotificationApi
             'string', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -377,8 +374,8 @@ class NotificationApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -417,16 +414,17 @@ class NotificationApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -438,7 +436,7 @@ class NotificationApi
      * @param  string $id Notification identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -455,7 +453,7 @@ class NotificationApi
      * @param  string $id Notification identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -465,6 +463,7 @@ class NotificationApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -472,19 +471,18 @@ class NotificationApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -493,12 +491,12 @@ class NotificationApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -521,8 +519,9 @@ class NotificationApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -539,7 +538,7 @@ class NotificationApi
     public function apiNotificationsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiNotificationsIdDelete'][0])
     {
         $returnType = '';
-        $request = $this->apiNotificationsIdDeleteRequest($id, $contentType);
+        $request    = $this->apiNotificationsIdDeleteRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -548,20 +547,22 @@ class NotificationApi
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -571,7 +572,7 @@ class NotificationApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiNotificationsIdDeleteRequest($id, string $contentType = self::contentTypes['apiNotificationsIdDelete'][0])
     {
@@ -579,34 +580,30 @@ class NotificationApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiNotificationsIdDelete'
+                'Missing the required parameter $id when calling apiNotificationsIdDelete',
             );
         }
 
-
         $resourcePath = '/api/v1/notifications/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -617,8 +614,8 @@ class NotificationApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -657,16 +654,17 @@ class NotificationApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -678,13 +676,14 @@ class NotificationApi
      * @param  string $id Notification identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiNotificationsIdGet($id, string $contentType = self::contentTypes['apiNotificationsIdGet'][0])
     {
-        list($response) = $this->apiNotificationsIdGetWithHttpInfo($id, $contentType);
+        [$response] = $this->apiNotificationsIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -696,7 +695,7 @@ class NotificationApi
      * @param  string $id Notification identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -706,6 +705,7 @@ class NotificationApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -713,21 +713,20 @@ class NotificationApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadItem',
@@ -742,18 +741,16 @@ class NotificationApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -768,20 +765,21 @@ class NotificationApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -804,8 +802,9 @@ class NotificationApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -822,7 +821,7 @@ class NotificationApi
     public function apiNotificationsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiNotificationsIdGet'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadItem';
-        $request = $this->apiNotificationsIdGetRequest($id, $contentType);
+        $request    = $this->apiNotificationsIdGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -840,24 +839,26 @@ class NotificationApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -867,7 +868,7 @@ class NotificationApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiNotificationsIdGetRequest($id, string $contentType = self::contentTypes['apiNotificationsIdGet'][0])
     {
@@ -875,34 +876,30 @@ class NotificationApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiNotificationsIdGet'
+                'Missing the required parameter $id when calling apiNotificationsIdGet',
             );
         }
 
-
         $resourcePath = '/api/v1/notifications/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -913,8 +910,8 @@ class NotificationApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -953,16 +950,17 @@ class NotificationApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -975,13 +973,14 @@ class NotificationApi
      * @param  object $body The updated Notification resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiNotificationsIdPatch($id, $body, string $contentType = self::contentTypes['apiNotificationsIdPatch'][0])
     {
-        list($response) = $this->apiNotificationsIdPatchWithHttpInfo($id, $body, $contentType);
+        [$response] = $this->apiNotificationsIdPatchWithHttpInfo($id, $body, $contentType);
+
         return $response;
     }
 
@@ -994,7 +993,7 @@ class NotificationApi
      * @param  object $body The updated Notification resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1004,6 +1003,7 @@ class NotificationApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1011,21 +1011,20 @@ class NotificationApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem',
@@ -1052,18 +1051,16 @@ class NotificationApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1078,36 +1075,39 @@ class NotificationApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1131,8 +1131,9 @@ class NotificationApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1150,7 +1151,7 @@ class NotificationApi
     public function apiNotificationsIdPatchAsyncWithHttpInfo($id, $body, string $contentType = self::contentTypes['apiNotificationsIdPatch'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem';
-        $request = $this->apiNotificationsIdPatchRequest($id, $body, $contentType);
+        $request    = $this->apiNotificationsIdPatchRequest($id, $body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1168,24 +1169,26 @@ class NotificationApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1196,7 +1199,7 @@ class NotificationApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiNotificationsIdPatchRequest($id, $body, string $contentType = self::contentTypes['apiNotificationsIdPatch'][0])
     {
@@ -1204,41 +1207,37 @@ class NotificationApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiNotificationsIdPatch'
+                'Missing the required parameter $id when calling apiNotificationsIdPatch',
             );
         }
 
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling apiNotificationsIdPatch'
+                'Missing the required parameter $body when calling apiNotificationsIdPatch',
             );
         }
 
-
         $resourcePath = '/api/v1/notifications/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1256,8 +1255,8 @@ class NotificationApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1296,16 +1295,17 @@ class NotificationApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PATCH',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1317,13 +1317,14 @@ class NotificationApi
      * @param  object $body The new Notification resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld
      */
     public function apiNotificationsPost($body, string $contentType = self::contentTypes['apiNotificationsPost'][0])
     {
-        list($response) = $this->apiNotificationsPostWithHttpInfo($body, $contentType);
+        [$response] = $this->apiNotificationsPostWithHttpInfo($body, $contentType);
+
         return $response;
     }
 
@@ -1335,7 +1336,7 @@ class NotificationApi
      * @param  object $body The new Notification resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1345,6 +1346,7 @@ class NotificationApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1352,21 +1354,20 @@ class NotificationApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem',
@@ -1387,18 +1388,16 @@ class NotificationApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1413,28 +1412,30 @@ class NotificationApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1457,8 +1458,9 @@ class NotificationApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1475,7 +1477,7 @@ class NotificationApi
     public function apiNotificationsPostAsyncWithHttpInfo($body, string $contentType = self::contentTypes['apiNotificationsPost'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\NotificationJsonldNotificationReadCollectionNotificationReadItem';
-        $request = $this->apiNotificationsPostRequest($body, $contentType);
+        $request    = $this->apiNotificationsPostRequest($body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1493,24 +1495,26 @@ class NotificationApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1520,7 +1524,7 @@ class NotificationApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiNotificationsPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiNotificationsPostRequest($body, string $contentType = self::contentTypes['apiNotificationsPost'][0])
     {
@@ -1528,26 +1532,21 @@ class NotificationApi
         // verify the required parameter 'body' is set
         if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling apiNotificationsPost'
+                'Missing the required parameter $body when calling apiNotificationsPost',
             );
         }
 
-
         $resourcePath = '/api/v1/notifications';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1565,8 +1564,8 @@ class NotificationApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1605,16 +1604,17 @@ class NotificationApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1648,8 +1648,8 @@ class NotificationApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
-    ): array {
+        ResponseInterface $response,
+    ) : array {
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
@@ -1661,11 +1661,11 @@ class NotificationApi
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
-                            $request->getUri()
+                            $request->getUri(),
                         ),
                         $response->getStatusCode(),
                         $response->getHeaders(),
-                        $content
+                        $content,
                     );
                 }
             }
@@ -1674,16 +1674,16 @@ class NotificationApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        int $statusCode,
+    ) : bool {
+        $left  = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

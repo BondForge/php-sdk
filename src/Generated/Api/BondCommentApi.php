@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * BondCommentApi
  * PHP version 8.1
@@ -28,6 +30,10 @@
 
 namespace BondForge\Sdk\Generated\Api;
 
+use BondForge\Sdk\Generated\ApiException;
+use BondForge\Sdk\Generated\Configuration;
+use BondForge\Sdk\Generated\HeaderSelector;
+use BondForge\Sdk\Generated\ObjectSerializer;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
@@ -37,11 +43,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use BondForge\Sdk\Generated\ApiException;
-use BondForge\Sdk\Generated\Configuration;
-use BondForge\Sdk\Generated\FormDataProcessor;
-use BondForge\Sdk\Generated\HeaderSelector;
-use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * BondCommentApi Class Doc Comment
@@ -51,7 +52,7 @@ use BondForge\Sdk\Generated\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class BondCommentApi
+final class BondCommentApi
 {
     /**
      * @var ClientInterface
@@ -73,7 +74,7 @@ class BondCommentApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'apiBondCommentsGetCollection' => [
             'application/json',
@@ -105,12 +106,12 @@ class BondCommentApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
-        $this->client = $client ?: new Client();
-        $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->client         = $client ?: new Client();
+        $this->config         = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->hostIndex = $hostIndex;
+        $this->hostIndex      = $hostIndex;
     }
 
     /**
@@ -118,7 +119,7 @@ class BondCommentApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex($hostIndex) : void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -149,13 +150,14 @@ class BondCommentApi
      * @param  int|null $page The collection page number (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ApiBondCommentsGetCollection200Response
      */
     public function apiBondCommentsGetCollection($page = 1, string $contentType = self::contentTypes['apiBondCommentsGetCollection'][0])
     {
-        list($response) = $this->apiBondCommentsGetCollectionWithHttpInfo($page, $contentType);
+        [$response] = $this->apiBondCommentsGetCollectionWithHttpInfo($page, $contentType);
+
         return $response;
     }
 
@@ -167,7 +169,7 @@ class BondCommentApi
      * @param  int|null $page The collection page number (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ApiBondCommentsGetCollection200Response, HTTP status code, HTTP response headers (array of strings)
      */
@@ -177,6 +179,7 @@ class BondCommentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -184,21 +187,20 @@ class BondCommentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ApiBondCommentsGetCollection200Response',
@@ -207,18 +209,16 @@ class BondCommentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -233,12 +233,12 @@ class BondCommentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ApiBondCommentsGetCollection200Response',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -261,8 +261,9 @@ class BondCommentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -279,7 +280,7 @@ class BondCommentApi
     public function apiBondCommentsGetCollectionAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiBondCommentsGetCollection'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ApiBondCommentsGetCollection200Response';
-        $request = $this->apiBondCommentsGetCollectionRequest($page, $contentType);
+        $request    = $this->apiBondCommentsGetCollectionRequest($page, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -297,24 +298,26 @@ class BondCommentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -324,19 +327,17 @@ class BondCommentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiBondCommentsGetCollectionRequest($page = 1, string $contentType = self::contentTypes['apiBondCommentsGetCollection'][0])
     {
 
-
-
         $resourcePath = '/api/v1/bond_comments';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
+        $httpBody     = '';
+        $multipart    = false;
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -345,16 +346,13 @@ class BondCommentApi
             'integer', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -365,8 +363,8 @@ class BondCommentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -405,16 +403,17 @@ class BondCommentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -426,7 +425,7 @@ class BondCommentApi
      * @param  string $id BondComment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -443,7 +442,7 @@ class BondCommentApi
      * @param  string $id BondComment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -453,6 +452,7 @@ class BondCommentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -460,19 +460,18 @@ class BondCommentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -481,12 +480,12 @@ class BondCommentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -509,8 +508,9 @@ class BondCommentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -527,7 +527,7 @@ class BondCommentApi
     public function apiBondCommentsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiBondCommentsIdDelete'][0])
     {
         $returnType = '';
-        $request = $this->apiBondCommentsIdDeleteRequest($id, $contentType);
+        $request    = $this->apiBondCommentsIdDeleteRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -536,20 +536,22 @@ class BondCommentApi
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -559,7 +561,7 @@ class BondCommentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiBondCommentsIdDeleteRequest($id, string $contentType = self::contentTypes['apiBondCommentsIdDelete'][0])
     {
@@ -567,34 +569,30 @@ class BondCommentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiBondCommentsIdDelete'
+                'Missing the required parameter $id when calling apiBondCommentsIdDelete',
             );
         }
 
-
         $resourcePath = '/api/v1/bond_comments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -605,8 +603,8 @@ class BondCommentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -645,16 +643,17 @@ class BondCommentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -666,13 +665,14 @@ class BondCommentApi
      * @param  string $id BondComment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiBondCommentsIdGet($id, string $contentType = self::contentTypes['apiBondCommentsIdGet'][0])
     {
-        list($response) = $this->apiBondCommentsIdGetWithHttpInfo($id, $contentType);
+        [$response] = $this->apiBondCommentsIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -684,7 +684,7 @@ class BondCommentApi
      * @param  string $id BondComment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -694,6 +694,7 @@ class BondCommentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -701,21 +702,20 @@ class BondCommentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
@@ -730,18 +730,16 @@ class BondCommentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -756,20 +754,21 @@ class BondCommentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -792,8 +791,9 @@ class BondCommentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -810,7 +810,7 @@ class BondCommentApi
     public function apiBondCommentsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiBondCommentsIdGet'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead';
-        $request = $this->apiBondCommentsIdGetRequest($id, $contentType);
+        $request    = $this->apiBondCommentsIdGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -828,24 +828,26 @@ class BondCommentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -855,7 +857,7 @@ class BondCommentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiBondCommentsIdGetRequest($id, string $contentType = self::contentTypes['apiBondCommentsIdGet'][0])
     {
@@ -863,34 +865,30 @@ class BondCommentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiBondCommentsIdGet'
+                'Missing the required parameter $id when calling apiBondCommentsIdGet',
             );
         }
 
-
         $resourcePath = '/api/v1/bond_comments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -901,8 +899,8 @@ class BondCommentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -941,16 +939,17 @@ class BondCommentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -963,13 +962,14 @@ class BondCommentApi
      * @param  \BondForge\Sdk\Generated\Model\BondCommentBondCommentWriteJsonMergePatch $bondCommentBondCommentWriteJsonMergePatch The updated BondComment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiBondCommentsIdPatch($id, $bondCommentBondCommentWriteJsonMergePatch, string $contentType = self::contentTypes['apiBondCommentsIdPatch'][0])
     {
-        list($response) = $this->apiBondCommentsIdPatchWithHttpInfo($id, $bondCommentBondCommentWriteJsonMergePatch, $contentType);
+        [$response] = $this->apiBondCommentsIdPatchWithHttpInfo($id, $bondCommentBondCommentWriteJsonMergePatch, $contentType);
+
         return $response;
     }
 
@@ -982,7 +982,7 @@ class BondCommentApi
      * @param  \BondForge\Sdk\Generated\Model\BondCommentBondCommentWriteJsonMergePatch $bondCommentBondCommentWriteJsonMergePatch The updated BondComment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -992,6 +992,7 @@ class BondCommentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -999,21 +1000,20 @@ class BondCommentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
@@ -1040,18 +1040,16 @@ class BondCommentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1066,36 +1064,39 @@ class BondCommentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1119,8 +1120,9 @@ class BondCommentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1138,7 +1140,7 @@ class BondCommentApi
     public function apiBondCommentsIdPatchAsyncWithHttpInfo($id, $bondCommentBondCommentWriteJsonMergePatch, string $contentType = self::contentTypes['apiBondCommentsIdPatch'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead';
-        $request = $this->apiBondCommentsIdPatchRequest($id, $bondCommentBondCommentWriteJsonMergePatch, $contentType);
+        $request    = $this->apiBondCommentsIdPatchRequest($id, $bondCommentBondCommentWriteJsonMergePatch, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1156,24 +1158,26 @@ class BondCommentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1184,7 +1188,7 @@ class BondCommentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiBondCommentsIdPatchRequest($id, $bondCommentBondCommentWriteJsonMergePatch, string $contentType = self::contentTypes['apiBondCommentsIdPatch'][0])
     {
@@ -1192,41 +1196,37 @@ class BondCommentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiBondCommentsIdPatch'
+                'Missing the required parameter $id when calling apiBondCommentsIdPatch',
             );
         }
 
         // verify the required parameter 'bondCommentBondCommentWriteJsonMergePatch' is set
         if ($bondCommentBondCommentWriteJsonMergePatch === null || (is_array($bondCommentBondCommentWriteJsonMergePatch) && count($bondCommentBondCommentWriteJsonMergePatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $bondCommentBondCommentWriteJsonMergePatch when calling apiBondCommentsIdPatch'
+                'Missing the required parameter $bondCommentBondCommentWriteJsonMergePatch when calling apiBondCommentsIdPatch',
             );
         }
 
-
         $resourcePath = '/api/v1/bond_comments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1244,8 +1244,8 @@ class BondCommentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1284,16 +1284,17 @@ class BondCommentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PATCH',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1306,13 +1307,14 @@ class BondCommentApi
      * @param  \BondForge\Sdk\Generated\Model\BondCommentBondCommentWrite $bondCommentBondCommentWrite The updated BondComment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiBondCommentsIdPut($id, $bondCommentBondCommentWrite, string $contentType = self::contentTypes['apiBondCommentsIdPut'][0])
     {
-        list($response) = $this->apiBondCommentsIdPutWithHttpInfo($id, $bondCommentBondCommentWrite, $contentType);
+        [$response] = $this->apiBondCommentsIdPutWithHttpInfo($id, $bondCommentBondCommentWrite, $contentType);
+
         return $response;
     }
 
@@ -1325,7 +1327,7 @@ class BondCommentApi
      * @param  \BondForge\Sdk\Generated\Model\BondCommentBondCommentWrite $bondCommentBondCommentWrite The updated BondComment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1335,6 +1337,7 @@ class BondCommentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1342,21 +1345,20 @@ class BondCommentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
@@ -1383,18 +1385,16 @@ class BondCommentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1409,36 +1409,39 @@ class BondCommentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1462,8 +1465,9 @@ class BondCommentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1481,7 +1485,7 @@ class BondCommentApi
     public function apiBondCommentsIdPutAsyncWithHttpInfo($id, $bondCommentBondCommentWrite, string $contentType = self::contentTypes['apiBondCommentsIdPut'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead';
-        $request = $this->apiBondCommentsIdPutRequest($id, $bondCommentBondCommentWrite, $contentType);
+        $request    = $this->apiBondCommentsIdPutRequest($id, $bondCommentBondCommentWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1499,24 +1503,26 @@ class BondCommentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1527,7 +1533,7 @@ class BondCommentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsIdPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiBondCommentsIdPutRequest($id, $bondCommentBondCommentWrite, string $contentType = self::contentTypes['apiBondCommentsIdPut'][0])
     {
@@ -1535,41 +1541,37 @@ class BondCommentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiBondCommentsIdPut'
+                'Missing the required parameter $id when calling apiBondCommentsIdPut',
             );
         }
 
         // verify the required parameter 'bondCommentBondCommentWrite' is set
         if ($bondCommentBondCommentWrite === null || (is_array($bondCommentBondCommentWrite) && count($bondCommentBondCommentWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $bondCommentBondCommentWrite when calling apiBondCommentsIdPut'
+                'Missing the required parameter $bondCommentBondCommentWrite when calling apiBondCommentsIdPut',
             );
         }
 
-
         $resourcePath = '/api/v1/bond_comments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1587,8 +1589,8 @@ class BondCommentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1627,16 +1629,17 @@ class BondCommentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1648,13 +1651,14 @@ class BondCommentApi
      * @param  \BondForge\Sdk\Generated\Model\BondCommentBondCommentWrite $bondCommentBondCommentWrite The new BondComment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld
      */
     public function apiBondCommentsPost($bondCommentBondCommentWrite, string $contentType = self::contentTypes['apiBondCommentsPost'][0])
     {
-        list($response) = $this->apiBondCommentsPostWithHttpInfo($bondCommentBondCommentWrite, $contentType);
+        [$response] = $this->apiBondCommentsPostWithHttpInfo($bondCommentBondCommentWrite, $contentType);
+
         return $response;
     }
 
@@ -1666,7 +1670,7 @@ class BondCommentApi
      * @param  \BondForge\Sdk\Generated\Model\BondCommentBondCommentWrite $bondCommentBondCommentWrite The new BondComment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1676,6 +1680,7 @@ class BondCommentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1683,21 +1688,20 @@ class BondCommentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
@@ -1718,18 +1722,16 @@ class BondCommentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1744,28 +1746,30 @@ class BondCommentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1788,8 +1792,9 @@ class BondCommentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1806,7 +1811,7 @@ class BondCommentApi
     public function apiBondCommentsPostAsyncWithHttpInfo($bondCommentBondCommentWrite, string $contentType = self::contentTypes['apiBondCommentsPost'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\BondCommentJsonldBondCommentRead';
-        $request = $this->apiBondCommentsPostRequest($bondCommentBondCommentWrite, $contentType);
+        $request    = $this->apiBondCommentsPostRequest($bondCommentBondCommentWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1824,24 +1829,26 @@ class BondCommentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1851,7 +1858,7 @@ class BondCommentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiBondCommentsPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiBondCommentsPostRequest($bondCommentBondCommentWrite, string $contentType = self::contentTypes['apiBondCommentsPost'][0])
     {
@@ -1859,26 +1866,21 @@ class BondCommentApi
         // verify the required parameter 'bondCommentBondCommentWrite' is set
         if ($bondCommentBondCommentWrite === null || (is_array($bondCommentBondCommentWrite) && count($bondCommentBondCommentWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $bondCommentBondCommentWrite when calling apiBondCommentsPost'
+                'Missing the required parameter $bondCommentBondCommentWrite when calling apiBondCommentsPost',
             );
         }
 
-
         $resourcePath = '/api/v1/bond_comments';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1896,8 +1898,8 @@ class BondCommentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1936,16 +1938,17 @@ class BondCommentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1979,8 +1982,8 @@ class BondCommentApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
-    ): array {
+        ResponseInterface $response,
+    ) : array {
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
@@ -1992,11 +1995,11 @@ class BondCommentApi
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
-                            $request->getUri()
+                            $request->getUri(),
                         ),
                         $response->getStatusCode(),
                         $response->getHeaders(),
-                        $content
+                        $content,
                     );
                 }
             }
@@ -2005,16 +2008,16 @@ class BondCommentApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        int $statusCode,
+    ) : bool {
+        $left  = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

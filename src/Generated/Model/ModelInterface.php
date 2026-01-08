@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ModelInterface
  *
@@ -100,7 +102,7 @@ interface ModelInterface
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool;
+    public static function isNullable(string $property) : bool;
 
     /**
      * Checks if a nullable property is set to null.
@@ -108,5 +110,5 @@ interface ModelInterface
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool;
+    public function isNullableSetToNull(string $property) : bool;
 }

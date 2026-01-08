@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * DefendantUDFJsonldDefendantUdfRead
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * DefendantUDFJsonldDefendantUdfRead Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess, \JsonSerializable
+final class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,12 +61,12 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
       */
     protected static $openAPITypes = [
         'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'id' => 'int',
-        'value' => 'string',
+        'atId'      => 'string',
+        'atType'    => 'string',
+        'id'        => 'int',
+        'value'     => 'string',
         'defendant' => 'string',
-        'udfType' => 'string'
+        'udfType'   => 'string',
     ];
 
     /**
@@ -76,33 +78,33 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
       */
     protected static $openAPIFormats = [
         'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'id' => null,
-        'value' => null,
+        'atId'      => null,
+        'atType'    => null,
+        'id'        => null,
+        'value'     => null,
         'defendant' => 'iri-reference',
-        'udfType' => 'iri-reference'
+        'udfType'   => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'id' => false,
-        'value' => false,
+        'atId'      => false,
+        'atType'    => false,
+        'id'        => false,
+        'value'     => false,
         'defendant' => false,
-        'udfType' => false
+        'udfType'   => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -131,7 +133,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -139,9 +141,9 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -149,9 +151,9 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -162,7 +164,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -173,7 +175,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -186,12 +188,12 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
      */
     protected static $attributeMap = [
         'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'id' => 'id',
-        'value' => 'value',
+        'atId'      => '@id',
+        'atType'    => '@type',
+        'id'        => 'id',
+        'value'     => 'value',
         'defendant' => 'defendant',
-        'udfType' => 'udf_type'
+        'udfType'   => 'udf_type',
     ];
 
     /**
@@ -201,12 +203,12 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
      */
     protected static $setters = [
         'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'id' => 'setId',
-        'value' => 'setValue',
+        'atId'      => 'setAtId',
+        'atType'    => 'setAtType',
+        'id'        => 'setId',
+        'value'     => 'setValue',
         'defendant' => 'setDefendant',
-        'udfType' => 'setUdfType'
+        'udfType'   => 'setUdfType',
     ];
 
     /**
@@ -216,12 +218,12 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
      */
     protected static $getters = [
         'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'id' => 'getId',
-        'value' => 'getValue',
+        'atId'      => 'getAtId',
+        'atType'    => 'getAtType',
+        'id'        => 'getId',
+        'value'     => 'getValue',
         'defendant' => 'getDefendant',
-        'udfType' => 'getUdfType'
+        'udfType'   => 'getUdfType',
     ];
 
     /**
@@ -265,7 +267,6 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -299,7 +300,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -323,6 +324,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -337,11 +339,10 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -351,7 +352,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -529,11 +530,11 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -541,7 +542,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -559,7 +560,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -571,11 +572,11 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -590,7 +591,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -602,7 +603,7 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -616,5 +617,3 @@ class DefendantUDFJsonldDefendantUdfRead implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

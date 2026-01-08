@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ChargeApi
  * PHP version 8.1
@@ -28,6 +30,10 @@
 
 namespace BondForge\Sdk\Generated\Api;
 
+use BondForge\Sdk\Generated\ApiException;
+use BondForge\Sdk\Generated\Configuration;
+use BondForge\Sdk\Generated\HeaderSelector;
+use BondForge\Sdk\Generated\ObjectSerializer;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
@@ -37,11 +43,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use BondForge\Sdk\Generated\ApiException;
-use BondForge\Sdk\Generated\Configuration;
-use BondForge\Sdk\Generated\FormDataProcessor;
-use BondForge\Sdk\Generated\HeaderSelector;
-use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * ChargeApi Class Doc Comment
@@ -51,7 +52,7 @@ use BondForge\Sdk\Generated\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ChargeApi
+final class ChargeApi
 {
     /**
      * @var ClientInterface
@@ -73,7 +74,7 @@ class ChargeApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'apiChargesGetCollection' => [
             'application/json',
@@ -105,12 +106,12 @@ class ChargeApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
-        $this->client = $client ?: new Client();
-        $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->client         = $client ?: new Client();
+        $this->config         = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->hostIndex = $hostIndex;
+        $this->hostIndex      = $hostIndex;
     }
 
     /**
@@ -118,7 +119,7 @@ class ChargeApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex($hostIndex) : void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -151,13 +152,14 @@ class ChargeApi
      * @param  string|null $description  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ApiChargesGetCollection200Response
      */
     public function apiChargesGetCollection($page = 1, $number = null, $description = null, string $contentType = self::contentTypes['apiChargesGetCollection'][0])
     {
-        list($response) = $this->apiChargesGetCollectionWithHttpInfo($page, $number, $description, $contentType);
+        [$response] = $this->apiChargesGetCollectionWithHttpInfo($page, $number, $description, $contentType);
+
         return $response;
     }
 
@@ -171,7 +173,7 @@ class ChargeApi
      * @param  string|null $description  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ApiChargesGetCollection200Response, HTTP status code, HTTP response headers (array of strings)
      */
@@ -181,6 +183,7 @@ class ChargeApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -188,21 +191,20 @@ class ChargeApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ApiChargesGetCollection200Response',
@@ -211,18 +213,16 @@ class ChargeApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -237,12 +237,12 @@ class ChargeApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ApiChargesGetCollection200Response',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -267,8 +267,9 @@ class ChargeApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -287,7 +288,7 @@ class ChargeApi
     public function apiChargesGetCollectionAsyncWithHttpInfo($page = 1, $number = null, $description = null, string $contentType = self::contentTypes['apiChargesGetCollection'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ApiChargesGetCollection200Response';
-        $request = $this->apiChargesGetCollectionRequest($page, $number, $description, $contentType);
+        $request    = $this->apiChargesGetCollectionRequest($page, $number, $description, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -305,24 +306,26 @@ class ChargeApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -334,21 +337,17 @@ class ChargeApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiChargesGetCollectionRequest($page = 1, $number = null, $description = null, string $contentType = self::contentTypes['apiChargesGetCollection'][0])
     {
 
-
-
-
-
         $resourcePath = '/api/v1/charges';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
+        $httpBody     = '';
+        $multipart    = false;
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -357,7 +356,7 @@ class ChargeApi
             'integer', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -366,7 +365,7 @@ class ChargeApi
             'string', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -375,16 +374,13 @@ class ChargeApi
             'string', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -395,8 +391,8 @@ class ChargeApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -435,16 +431,17 @@ class ChargeApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -456,7 +453,7 @@ class ChargeApi
      * @param  string $id Charge identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -473,7 +470,7 @@ class ChargeApi
      * @param  string $id Charge identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -483,6 +480,7 @@ class ChargeApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -490,19 +488,18 @@ class ChargeApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -511,12 +508,12 @@ class ChargeApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -539,8 +536,9 @@ class ChargeApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -557,7 +555,7 @@ class ChargeApi
     public function apiChargesIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiChargesIdDelete'][0])
     {
         $returnType = '';
-        $request = $this->apiChargesIdDeleteRequest($id, $contentType);
+        $request    = $this->apiChargesIdDeleteRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -566,20 +564,22 @@ class ChargeApi
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -589,7 +589,7 @@ class ChargeApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiChargesIdDeleteRequest($id, string $contentType = self::contentTypes['apiChargesIdDelete'][0])
     {
@@ -597,34 +597,30 @@ class ChargeApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiChargesIdDelete'
+                'Missing the required parameter $id when calling apiChargesIdDelete',
             );
         }
 
-
         $resourcePath = '/api/v1/charges/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -635,8 +631,8 @@ class ChargeApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -675,16 +671,17 @@ class ChargeApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -696,13 +693,14 @@ class ChargeApi
      * @param  string $id Charge identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiChargesIdGet($id, string $contentType = self::contentTypes['apiChargesIdGet'][0])
     {
-        list($response) = $this->apiChargesIdGetWithHttpInfo($id, $contentType);
+        [$response] = $this->apiChargesIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -714,7 +712,7 @@ class ChargeApi
      * @param  string $id Charge identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -724,6 +722,7 @@ class ChargeApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -731,21 +730,20 @@ class ChargeApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadItem',
@@ -760,18 +758,16 @@ class ChargeApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -786,20 +782,21 @@ class ChargeApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -822,8 +819,9 @@ class ChargeApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -840,7 +838,7 @@ class ChargeApi
     public function apiChargesIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiChargesIdGet'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadItem';
-        $request = $this->apiChargesIdGetRequest($id, $contentType);
+        $request    = $this->apiChargesIdGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -858,24 +856,26 @@ class ChargeApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -885,7 +885,7 @@ class ChargeApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiChargesIdGetRequest($id, string $contentType = self::contentTypes['apiChargesIdGet'][0])
     {
@@ -893,34 +893,30 @@ class ChargeApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiChargesIdGet'
+                'Missing the required parameter $id when calling apiChargesIdGet',
             );
         }
 
-
         $resourcePath = '/api/v1/charges/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -931,8 +927,8 @@ class ChargeApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -971,16 +967,17 @@ class ChargeApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -993,13 +990,14 @@ class ChargeApi
      * @param  \BondForge\Sdk\Generated\Model\ChargeChargeWriteJsonMergePatch $chargeChargeWriteJsonMergePatch The updated Charge resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiChargesIdPatch($id, $chargeChargeWriteJsonMergePatch, string $contentType = self::contentTypes['apiChargesIdPatch'][0])
     {
-        list($response) = $this->apiChargesIdPatchWithHttpInfo($id, $chargeChargeWriteJsonMergePatch, $contentType);
+        [$response] = $this->apiChargesIdPatchWithHttpInfo($id, $chargeChargeWriteJsonMergePatch, $contentType);
+
         return $response;
     }
 
@@ -1012,7 +1010,7 @@ class ChargeApi
      * @param  \BondForge\Sdk\Generated\Model\ChargeChargeWriteJsonMergePatch $chargeChargeWriteJsonMergePatch The updated Charge resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1022,6 +1020,7 @@ class ChargeApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1029,21 +1028,20 @@ class ChargeApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem',
@@ -1070,18 +1068,16 @@ class ChargeApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1096,36 +1092,39 @@ class ChargeApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1149,8 +1148,9 @@ class ChargeApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1168,7 +1168,7 @@ class ChargeApi
     public function apiChargesIdPatchAsyncWithHttpInfo($id, $chargeChargeWriteJsonMergePatch, string $contentType = self::contentTypes['apiChargesIdPatch'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem';
-        $request = $this->apiChargesIdPatchRequest($id, $chargeChargeWriteJsonMergePatch, $contentType);
+        $request    = $this->apiChargesIdPatchRequest($id, $chargeChargeWriteJsonMergePatch, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1186,24 +1186,26 @@ class ChargeApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1214,7 +1216,7 @@ class ChargeApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiChargesIdPatchRequest($id, $chargeChargeWriteJsonMergePatch, string $contentType = self::contentTypes['apiChargesIdPatch'][0])
     {
@@ -1222,41 +1224,37 @@ class ChargeApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiChargesIdPatch'
+                'Missing the required parameter $id when calling apiChargesIdPatch',
             );
         }
 
         // verify the required parameter 'chargeChargeWriteJsonMergePatch' is set
         if ($chargeChargeWriteJsonMergePatch === null || (is_array($chargeChargeWriteJsonMergePatch) && count($chargeChargeWriteJsonMergePatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $chargeChargeWriteJsonMergePatch when calling apiChargesIdPatch'
+                'Missing the required parameter $chargeChargeWriteJsonMergePatch when calling apiChargesIdPatch',
             );
         }
 
-
         $resourcePath = '/api/v1/charges/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1274,8 +1272,8 @@ class ChargeApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1314,16 +1312,17 @@ class ChargeApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PATCH',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1336,13 +1335,14 @@ class ChargeApi
      * @param  \BondForge\Sdk\Generated\Model\ChargeChargeWrite $chargeChargeWrite The updated Charge resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiChargesIdPut($id, $chargeChargeWrite, string $contentType = self::contentTypes['apiChargesIdPut'][0])
     {
-        list($response) = $this->apiChargesIdPutWithHttpInfo($id, $chargeChargeWrite, $contentType);
+        [$response] = $this->apiChargesIdPutWithHttpInfo($id, $chargeChargeWrite, $contentType);
+
         return $response;
     }
 
@@ -1355,7 +1355,7 @@ class ChargeApi
      * @param  \BondForge\Sdk\Generated\Model\ChargeChargeWrite $chargeChargeWrite The updated Charge resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1365,6 +1365,7 @@ class ChargeApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1372,21 +1373,20 @@ class ChargeApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem',
@@ -1413,18 +1413,16 @@ class ChargeApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1439,36 +1437,39 @@ class ChargeApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1492,8 +1493,9 @@ class ChargeApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1511,7 +1513,7 @@ class ChargeApi
     public function apiChargesIdPutAsyncWithHttpInfo($id, $chargeChargeWrite, string $contentType = self::contentTypes['apiChargesIdPut'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem';
-        $request = $this->apiChargesIdPutRequest($id, $chargeChargeWrite, $contentType);
+        $request    = $this->apiChargesIdPutRequest($id, $chargeChargeWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1529,24 +1531,26 @@ class ChargeApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1557,7 +1561,7 @@ class ChargeApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesIdPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiChargesIdPutRequest($id, $chargeChargeWrite, string $contentType = self::contentTypes['apiChargesIdPut'][0])
     {
@@ -1565,41 +1569,37 @@ class ChargeApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiChargesIdPut'
+                'Missing the required parameter $id when calling apiChargesIdPut',
             );
         }
 
         // verify the required parameter 'chargeChargeWrite' is set
         if ($chargeChargeWrite === null || (is_array($chargeChargeWrite) && count($chargeChargeWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $chargeChargeWrite when calling apiChargesIdPut'
+                'Missing the required parameter $chargeChargeWrite when calling apiChargesIdPut',
             );
         }
 
-
         $resourcePath = '/api/v1/charges/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1617,8 +1617,8 @@ class ChargeApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1657,16 +1657,17 @@ class ChargeApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1678,13 +1679,14 @@ class ChargeApi
      * @param  \BondForge\Sdk\Generated\Model\ChargeChargeWrite $chargeChargeWrite The new Charge resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld
      */
     public function apiChargesPost($chargeChargeWrite, string $contentType = self::contentTypes['apiChargesPost'][0])
     {
-        list($response) = $this->apiChargesPostWithHttpInfo($chargeChargeWrite, $contentType);
+        [$response] = $this->apiChargesPostWithHttpInfo($chargeChargeWrite, $contentType);
+
         return $response;
     }
 
@@ -1696,7 +1698,7 @@ class ChargeApi
      * @param  \BondForge\Sdk\Generated\Model\ChargeChargeWrite $chargeChargeWrite The new Charge resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1706,6 +1708,7 @@ class ChargeApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1713,21 +1716,20 @@ class ChargeApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem',
@@ -1748,18 +1750,16 @@ class ChargeApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1774,28 +1774,30 @@ class ChargeApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1818,8 +1820,9 @@ class ChargeApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1836,7 +1839,7 @@ class ChargeApi
     public function apiChargesPostAsyncWithHttpInfo($chargeChargeWrite, string $contentType = self::contentTypes['apiChargesPost'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ChargeJsonldChargeReadCollectionChargeReadItem';
-        $request = $this->apiChargesPostRequest($chargeChargeWrite, $contentType);
+        $request    = $this->apiChargesPostRequest($chargeChargeWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1854,24 +1857,26 @@ class ChargeApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1881,7 +1886,7 @@ class ChargeApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiChargesPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiChargesPostRequest($chargeChargeWrite, string $contentType = self::contentTypes['apiChargesPost'][0])
     {
@@ -1889,26 +1894,21 @@ class ChargeApi
         // verify the required parameter 'chargeChargeWrite' is set
         if ($chargeChargeWrite === null || (is_array($chargeChargeWrite) && count($chargeChargeWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $chargeChargeWrite when calling apiChargesPost'
+                'Missing the required parameter $chargeChargeWrite when calling apiChargesPost',
             );
         }
 
-
         $resourcePath = '/api/v1/charges';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1926,8 +1926,8 @@ class ChargeApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1966,16 +1966,17 @@ class ChargeApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -2009,8 +2010,8 @@ class ChargeApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
-    ): array {
+        ResponseInterface $response,
+    ) : array {
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
@@ -2022,11 +2023,11 @@ class ChargeApi
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
-                            $request->getUri()
+                            $request->getUri(),
                         ),
                         $response->getStatusCode(),
                         $response->getHeaders(),
-                        $content
+                        $content,
                     );
                 }
             }
@@ -2035,16 +2036,16 @@ class ChargeApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        int $statusCode,
+    ) : bool {
+        $left  = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

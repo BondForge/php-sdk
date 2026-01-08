@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * FeatureFlagFeatureFlagWrite
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * FeatureFlagFeatureFlagWrite Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonSerializable
+final class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,12 +60,12 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'name' => 'string',
+        'id'          => 'int',
+        'name'        => 'string',
         'description' => 'string',
-        'active' => 'bool',
-        'type' => 'string',
-        'code' => 'string'
+        'active'      => 'bool',
+        'type'        => 'string',
+        'code'        => 'string',
     ];
 
     /**
@@ -74,32 +76,32 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'name' => null,
+        'id'          => null,
+        'name'        => null,
         'description' => null,
-        'active' => null,
-        'type' => null,
-        'code' => null
+        'active'      => null,
+        'type'        => null,
+        'code'        => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'name' => false,
+        'id'          => false,
+        'name'        => false,
         'description' => false,
-        'active' => false,
-        'type' => false,
-        'code' => false
+        'active'      => false,
+        'type'        => false,
+        'code'        => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -128,7 +130,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -136,9 +138,9 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -146,9 +148,9 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -159,7 +161,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -170,7 +172,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -182,12 +184,12 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
+        'id'          => 'id',
+        'name'        => 'name',
         'description' => 'description',
-        'active' => 'active',
-        'type' => 'type',
-        'code' => 'code'
+        'active'      => 'active',
+        'type'        => 'type',
+        'code'        => 'code',
     ];
 
     /**
@@ -196,12 +198,12 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
+        'id'          => 'setId',
+        'name'        => 'setName',
         'description' => 'setDescription',
-        'active' => 'setActive',
-        'type' => 'setType',
-        'code' => 'setCode'
+        'active'      => 'setActive',
+        'type'        => 'setType',
+        'code'        => 'setCode',
     ];
 
     /**
@@ -210,12 +212,12 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
+        'id'          => 'getId',
+        'name'        => 'getName',
         'description' => 'getDescription',
-        'active' => 'getActive',
-        'type' => 'getType',
-        'code' => 'getCode'
+        'active'      => 'getActive',
+        'type'        => 'getType',
+        'code'        => 'getCode',
     ];
 
     /**
@@ -259,11 +261,11 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
-    public const TYPE_ALPHA = 'alpha';
-    public const TYPE_BETA = 'beta';
-    public const TYPE_ADMIN = 'admin';
-    public const TYPE_SYSTEM = 'system';
-    public const TYPE_OPTIONAL = 'optional';
+    public const TYPE_ALPHA       = 'alpha';
+    public const TYPE_BETA        = 'beta';
+    public const TYPE_ADMIN       = 'admin';
+    public const TYPE_SYSTEM      = 'system';
+    public const TYPE_OPTIONAL    = 'optional';
     public const TYPE_DEVELOPMENT = 'development';
 
     /**
@@ -315,7 +317,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -338,7 +340,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
-                implode("', '", $allowedValues)
+                implode("', '", $allowedValues),
             );
         }
 
@@ -355,7 +357,6 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets id
@@ -493,8 +494,8 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
-                    implode("', '", $allowedValues)
-                )
+                    implode("', '", $allowedValues),
+                ),
             );
         }
         $this->container['type'] = $type;
@@ -531,11 +532,11 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -543,7 +544,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -561,7 +562,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -573,11 +574,11 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -592,7 +593,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -604,7 +605,7 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -618,5 +619,3 @@ class FeatureFlagFeatureFlagWrite implements ModelInterface, ArrayAccess, \JsonS
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

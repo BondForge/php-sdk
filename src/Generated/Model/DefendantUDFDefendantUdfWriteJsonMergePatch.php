@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * DefendantUDFDefendantUdfWriteJsonMergePatch
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * DefendantUDFDefendantUdfWriteJsonMergePatch Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,10 +60,10 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'value' => 'string',
+        'id'        => 'int',
+        'value'     => 'string',
         'defendant' => 'string',
-        'udfType' => 'string'
+        'udfType'   => 'string',
     ];
 
     /**
@@ -72,28 +74,28 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'value' => null,
+        'id'        => null,
+        'value'     => null,
         'defendant' => 'iri-reference',
-        'udfType' => 'iri-reference'
+        'udfType'   => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'value' => false,
+        'id'        => false,
+        'value'     => false,
         'defendant' => false,
-        'udfType' => false
+        'udfType'   => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -122,7 +124,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -130,9 +132,9 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -140,9 +142,9 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -153,7 +155,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -164,7 +166,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -176,10 +178,10 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'value' => 'value',
+        'id'        => 'id',
+        'value'     => 'value',
         'defendant' => 'defendant',
-        'udfType' => 'udf_type'
+        'udfType'   => 'udf_type',
     ];
 
     /**
@@ -188,10 +190,10 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'value' => 'setValue',
+        'id'        => 'setId',
+        'value'     => 'setValue',
         'defendant' => 'setDefendant',
-        'udfType' => 'setUdfType'
+        'udfType'   => 'setUdfType',
     ];
 
     /**
@@ -200,10 +202,10 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'value' => 'getValue',
+        'id'        => 'getId',
+        'value'     => 'getValue',
         'defendant' => 'getDefendant',
-        'udfType' => 'getUdfType'
+        'udfType'   => 'getUdfType',
     ];
 
     /**
@@ -247,7 +249,6 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -278,7 +279,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -309,7 +310,6 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets id
@@ -421,11 +421,11 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -433,7 +433,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -451,7 +451,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -463,11 +463,11 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -482,7 +482,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -494,7 +494,7 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -508,5 +508,3 @@ class DefendantUDFDefendantUdfWriteJsonMergePatch implements ModelInterface, Arr
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * PaymentApi
  * PHP version 8.1
@@ -28,6 +30,10 @@
 
 namespace BondForge\Sdk\Generated\Api;
 
+use BondForge\Sdk\Generated\ApiException;
+use BondForge\Sdk\Generated\Configuration;
+use BondForge\Sdk\Generated\HeaderSelector;
+use BondForge\Sdk\Generated\ObjectSerializer;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
@@ -37,11 +43,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use BondForge\Sdk\Generated\ApiException;
-use BondForge\Sdk\Generated\Configuration;
-use BondForge\Sdk\Generated\FormDataProcessor;
-use BondForge\Sdk\Generated\HeaderSelector;
-use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * PaymentApi Class Doc Comment
@@ -51,7 +52,7 @@ use BondForge\Sdk\Generated\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class PaymentApi
+final class PaymentApi
 {
     /**
      * @var ClientInterface
@@ -73,7 +74,7 @@ class PaymentApi
      */
     protected $hostIndex;
 
-    /** @var string[] $contentTypes **/
+    /** @var string[] * */
     public const contentTypes = [
         'apiPaymentsGetCollection' => [
             'application/json',
@@ -105,12 +106,12 @@ class PaymentApi
         ?ClientInterface $client = null,
         ?Configuration $config = null,
         ?HeaderSelector $selector = null,
-        int $hostIndex = 0
+        int $hostIndex = 0,
     ) {
-        $this->client = $client ?: new Client();
-        $this->config = $config ?: Configuration::getDefaultConfiguration();
+        $this->client         = $client ?: new Client();
+        $this->config         = $config ?: Configuration::getDefaultConfiguration();
         $this->headerSelector = $selector ?: new HeaderSelector();
-        $this->hostIndex = $hostIndex;
+        $this->hostIndex      = $hostIndex;
     }
 
     /**
@@ -118,7 +119,7 @@ class PaymentApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex($hostIndex) : void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -149,13 +150,14 @@ class PaymentApi
      * @param  int|null $page The collection page number (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\ApiPaymentsGetCollection200Response
      */
     public function apiPaymentsGetCollection($page = 1, string $contentType = self::contentTypes['apiPaymentsGetCollection'][0])
     {
-        list($response) = $this->apiPaymentsGetCollectionWithHttpInfo($page, $contentType);
+        [$response] = $this->apiPaymentsGetCollectionWithHttpInfo($page, $contentType);
+
         return $response;
     }
 
@@ -167,7 +169,7 @@ class PaymentApi
      * @param  int|null $page The collection page number (optional, default to 1)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsGetCollection'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\ApiPaymentsGetCollection200Response, HTTP status code, HTTP response headers (array of strings)
      */
@@ -177,6 +179,7 @@ class PaymentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -184,21 +187,20 @@ class PaymentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\ApiPaymentsGetCollection200Response',
@@ -207,18 +209,16 @@ class PaymentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -233,12 +233,12 @@ class PaymentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ApiPaymentsGetCollection200Response',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -261,8 +261,9 @@ class PaymentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -279,7 +280,7 @@ class PaymentApi
     public function apiPaymentsGetCollectionAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiPaymentsGetCollection'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\ApiPaymentsGetCollection200Response';
-        $request = $this->apiPaymentsGetCollectionRequest($page, $contentType);
+        $request    = $this->apiPaymentsGetCollectionRequest($page, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -297,24 +298,26 @@ class PaymentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -324,19 +327,17 @@ class PaymentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiPaymentsGetCollectionRequest($page = 1, string $contentType = self::contentTypes['apiPaymentsGetCollection'][0])
     {
 
-
-
         $resourcePath = '/api/v1/payments';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
+        $httpBody     = '';
+        $multipart    = false;
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -345,16 +346,13 @@ class PaymentApi
             'integer', // openApiType
             'form', // style
             false, // explode
-            false // required
+            false, // required
         ) ?? []);
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -365,8 +363,8 @@ class PaymentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -405,16 +403,17 @@ class PaymentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -426,7 +425,7 @@ class PaymentApi
      * @param  string $id Payment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -443,7 +442,7 @@ class PaymentApi
      * @param  string $id Payment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdDelete'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -453,6 +452,7 @@ class PaymentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -460,19 +460,18 @@ class PaymentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
-
 
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
@@ -481,12 +480,12 @@ class PaymentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -509,8 +508,9 @@ class PaymentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -527,7 +527,7 @@ class PaymentApi
     public function apiPaymentsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiPaymentsIdDelete'][0])
     {
         $returnType = '';
-        $request = $this->apiPaymentsIdDeleteRequest($id, $contentType);
+        $request    = $this->apiPaymentsIdDeleteRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -536,20 +536,22 @@ class PaymentApi
                     return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -559,7 +561,7 @@ class PaymentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiPaymentsIdDeleteRequest($id, string $contentType = self::contentTypes['apiPaymentsIdDelete'][0])
     {
@@ -567,34 +569,30 @@ class PaymentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiPaymentsIdDelete'
+                'Missing the required parameter $id when calling apiPaymentsIdDelete',
             );
         }
 
-
         $resourcePath = '/api/v1/payments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -605,8 +603,8 @@ class PaymentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -645,16 +643,17 @@ class PaymentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -666,13 +665,14 @@ class PaymentApi
      * @param  string $id Payment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiPaymentsIdGet($id, string $contentType = self::contentTypes['apiPaymentsIdGet'][0])
     {
-        list($response) = $this->apiPaymentsIdGetWithHttpInfo($id, $contentType);
+        [$response] = $this->apiPaymentsIdGetWithHttpInfo($id, $contentType);
+
         return $response;
     }
 
@@ -684,7 +684,7 @@ class PaymentApi
      * @param  string $id Payment identifier (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdGet'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -694,6 +694,7 @@ class PaymentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -701,21 +702,20 @@ class PaymentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
@@ -730,18 +730,16 @@ class PaymentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -756,20 +754,21 @@ class PaymentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -792,8 +791,9 @@ class PaymentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -810,7 +810,7 @@ class PaymentApi
     public function apiPaymentsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiPaymentsIdGet'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead';
-        $request = $this->apiPaymentsIdGetRequest($id, $contentType);
+        $request    = $this->apiPaymentsIdGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -828,24 +828,26 @@ class PaymentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -855,7 +857,7 @@ class PaymentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiPaymentsIdGetRequest($id, string $contentType = self::contentTypes['apiPaymentsIdGet'][0])
     {
@@ -863,34 +865,30 @@ class PaymentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiPaymentsIdGet'
+                'Missing the required parameter $id when calling apiPaymentsIdGet',
             );
         }
 
-
         $resourcePath = '/api/v1/payments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -901,8 +899,8 @@ class PaymentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -941,16 +939,17 @@ class PaymentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -963,13 +962,14 @@ class PaymentApi
      * @param  \BondForge\Sdk\Generated\Model\PaymentPaymentWriteJsonMergePatch $paymentPaymentWriteJsonMergePatch The updated Payment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiPaymentsIdPatch($id, $paymentPaymentWriteJsonMergePatch, string $contentType = self::contentTypes['apiPaymentsIdPatch'][0])
     {
-        list($response) = $this->apiPaymentsIdPatchWithHttpInfo($id, $paymentPaymentWriteJsonMergePatch, $contentType);
+        [$response] = $this->apiPaymentsIdPatchWithHttpInfo($id, $paymentPaymentWriteJsonMergePatch, $contentType);
+
         return $response;
     }
 
@@ -982,7 +982,7 @@ class PaymentApi
      * @param  \BondForge\Sdk\Generated\Model\PaymentPaymentWriteJsonMergePatch $paymentPaymentWriteJsonMergePatch The updated Payment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdPatch'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -992,6 +992,7 @@ class PaymentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -999,21 +1000,20 @@ class PaymentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
@@ -1040,18 +1040,16 @@ class PaymentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1066,36 +1064,39 @@ class PaymentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1119,8 +1120,9 @@ class PaymentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1138,7 +1140,7 @@ class PaymentApi
     public function apiPaymentsIdPatchAsyncWithHttpInfo($id, $paymentPaymentWriteJsonMergePatch, string $contentType = self::contentTypes['apiPaymentsIdPatch'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead';
-        $request = $this->apiPaymentsIdPatchRequest($id, $paymentPaymentWriteJsonMergePatch, $contentType);
+        $request    = $this->apiPaymentsIdPatchRequest($id, $paymentPaymentWriteJsonMergePatch, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1156,24 +1158,26 @@ class PaymentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1184,7 +1188,7 @@ class PaymentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdPatch'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiPaymentsIdPatchRequest($id, $paymentPaymentWriteJsonMergePatch, string $contentType = self::contentTypes['apiPaymentsIdPatch'][0])
     {
@@ -1192,41 +1196,37 @@ class PaymentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiPaymentsIdPatch'
+                'Missing the required parameter $id when calling apiPaymentsIdPatch',
             );
         }
 
         // verify the required parameter 'paymentPaymentWriteJsonMergePatch' is set
         if ($paymentPaymentWriteJsonMergePatch === null || (is_array($paymentPaymentWriteJsonMergePatch) && count($paymentPaymentWriteJsonMergePatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $paymentPaymentWriteJsonMergePatch when calling apiPaymentsIdPatch'
+                'Missing the required parameter $paymentPaymentWriteJsonMergePatch when calling apiPaymentsIdPatch',
             );
         }
 
-
         $resourcePath = '/api/v1/payments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1244,8 +1244,8 @@ class PaymentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1284,16 +1284,17 @@ class PaymentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PATCH',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1306,13 +1307,14 @@ class PaymentApi
      * @param  \BondForge\Sdk\Generated\Model\PaymentPaymentWrite $paymentPaymentWrite The updated Payment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld
      */
     public function apiPaymentsIdPut($id, $paymentPaymentWrite, string $contentType = self::contentTypes['apiPaymentsIdPut'][0])
     {
-        list($response) = $this->apiPaymentsIdPutWithHttpInfo($id, $paymentPaymentWrite, $contentType);
+        [$response] = $this->apiPaymentsIdPutWithHttpInfo($id, $paymentPaymentWrite, $contentType);
+
         return $response;
     }
 
@@ -1325,7 +1327,7 @@ class PaymentApi
      * @param  \BondForge\Sdk\Generated\Model\PaymentPaymentWrite $paymentPaymentWrite The updated Payment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdPut'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld|\BondForge\Sdk\Generated\Model\ErrorJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1335,6 +1337,7 @@ class PaymentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1342,21 +1345,20 @@ class PaymentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
@@ -1383,18 +1385,16 @@ class PaymentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1409,36 +1409,39 @@ class PaymentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1462,8 +1465,9 @@ class PaymentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1481,7 +1485,7 @@ class PaymentApi
     public function apiPaymentsIdPutAsyncWithHttpInfo($id, $paymentPaymentWrite, string $contentType = self::contentTypes['apiPaymentsIdPut'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead';
-        $request = $this->apiPaymentsIdPutRequest($id, $paymentPaymentWrite, $contentType);
+        $request    = $this->apiPaymentsIdPutRequest($id, $paymentPaymentWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1499,24 +1503,26 @@ class PaymentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1527,7 +1533,7 @@ class PaymentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsIdPut'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiPaymentsIdPutRequest($id, $paymentPaymentWrite, string $contentType = self::contentTypes['apiPaymentsIdPut'][0])
     {
@@ -1535,41 +1541,37 @@ class PaymentApi
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiPaymentsIdPut'
+                'Missing the required parameter $id when calling apiPaymentsIdPut',
             );
         }
 
         // verify the required parameter 'paymentPaymentWrite' is set
         if ($paymentPaymentWrite === null || (is_array($paymentPaymentWrite) && count($paymentPaymentWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $paymentPaymentWrite when calling apiPaymentsIdPut'
+                'Missing the required parameter $paymentPaymentWrite when calling apiPaymentsIdPut',
             );
         }
 
-
         $resourcePath = '/api/v1/payments/{id}';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         // path params
         if ($id !== null) {
             $resourcePath = str_replace(
                 '{' . 'id' . '}',
                 ObjectSerializer::toPathValue($id),
-                $resourcePath
+                $resourcePath,
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1587,8 +1589,8 @@ class PaymentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1627,16 +1629,17 @@ class PaymentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1648,13 +1651,14 @@ class PaymentApi
      * @param  \BondForge\Sdk\Generated\Model\PaymentPaymentWrite $paymentPaymentWrite The new Payment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld
      */
     public function apiPaymentsPost($paymentPaymentWrite, string $contentType = self::contentTypes['apiPaymentsPost'][0])
     {
-        list($response) = $this->apiPaymentsPostWithHttpInfo($paymentPaymentWrite, $contentType);
+        [$response] = $this->apiPaymentsPostWithHttpInfo($paymentPaymentWrite, $contentType);
+
         return $response;
     }
 
@@ -1666,7 +1670,7 @@ class PaymentApi
      * @param  \BondForge\Sdk\Generated\Model\PaymentPaymentWrite $paymentPaymentWrite The new Payment resource (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsPost'] to see the possible values for this operation
      *
-     * @throws \BondForge\Sdk\Generated\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead|\BondForge\Sdk\Generated\Model\ErrorJsonld|\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld, HTTP status code, HTTP response headers (array of strings)
      */
@@ -1676,6 +1680,7 @@ class PaymentApi
 
         try {
             $options = $this->createHttpClientOption();
+
             try {
                 $response = $this->client->send($request, $options);
             } catch (RequestException $e) {
@@ -1683,21 +1688,20 @@ class PaymentApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null,
                 );
             } catch (ConnectException $e) {
                 throw new ApiException(
                     "[{$e->getCode()}] {$e->getMessage()}",
                     (int) $e->getCode(),
                     null,
-                    null
+                    null,
                 );
             }
 
             $statusCode = $response->getStatusCode();
 
-
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     return $this->handleResponseWithDataType(
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
@@ -1718,18 +1722,16 @@ class PaymentApi
                     );
             }
 
-            
-
             if ($statusCode < 200 || $statusCode > 299) {
                 throw new ApiException(
                     sprintf(
                         '[%d] Error connecting to the API (%s)',
                         $statusCode,
-                        (string) $request->getUri()
+                        (string) $request->getUri(),
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    (string) $response->getBody()
+                    (string) $response->getBody(),
                 );
             }
 
@@ -1744,28 +1746,30 @@ class PaymentApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ErrorJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BondForge\Sdk\Generated\Model\ConstraintViolationJsonld',
-                        $e->getResponseHeaders()
+                        $e->getResponseHeaders(),
                     );
                     $e->setResponseObject($data);
+
                     throw $e;
             }
-        
 
             throw $e;
         }
@@ -1788,8 +1792,9 @@ class PaymentApi
             ->then(
                 function ($response) {
                     return $response[0];
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1806,7 +1811,7 @@ class PaymentApi
     public function apiPaymentsPostAsyncWithHttpInfo($paymentPaymentWrite, string $contentType = self::contentTypes['apiPaymentsPost'][0])
     {
         $returnType = '\BondForge\Sdk\Generated\Model\PaymentJsonldPaymentRead';
-        $request = $this->apiPaymentsPostRequest($paymentPaymentWrite, $contentType);
+        $request    = $this->apiPaymentsPostRequest($paymentPaymentWrite, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1824,24 +1829,26 @@ class PaymentApi
                     return [
                         ObjectSerializer::deserialize($content, $returnType, []),
                         $response->getStatusCode(),
-                        $response->getHeaders()
+                        $response->getHeaders(),
                     ];
                 },
                 function ($exception) {
-                    $response = $exception->getResponse();
+                    $response   = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
+
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
                             $statusCode,
-                            $exception->getRequest()->getUri()
+                            $exception->getRequest()->getUri(),
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        (string) $response->getBody()
+                        (string) $response->getBody(),
                     );
-                }
-            );
+                },
+            )
+        ;
     }
 
     /**
@@ -1851,7 +1858,7 @@ class PaymentApi
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiPaymentsPost'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
+     * @return Request
      */
     public function apiPaymentsPostRequest($paymentPaymentWrite, string $contentType = self::contentTypes['apiPaymentsPost'][0])
     {
@@ -1859,26 +1866,21 @@ class PaymentApi
         // verify the required parameter 'paymentPaymentWrite' is set
         if ($paymentPaymentWrite === null || (is_array($paymentPaymentWrite) && count($paymentPaymentWrite) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $paymentPaymentWrite when calling apiPaymentsPost'
+                'Missing the required parameter $paymentPaymentWrite when calling apiPaymentsPost',
             );
         }
 
-
         $resourcePath = '/api/v1/payments';
-        $formParams = [];
-        $queryParams = [];
+        $formParams   = [];
+        $queryParams  = [];
         $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
+        $httpBody     = '';
+        $multipart    = false;
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/ld+json', 'application/problem+json', 'application/json', ],
             $contentType,
-            $multipart
+            $multipart,
         );
 
         // for model (json/xml)
@@ -1896,8 +1898,8 @@ class PaymentApi
                     $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
                     foreach ($formParamValueItems as $formParamValueItem) {
                         $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
+                            'name'     => $formParamName,
+                            'contents' => $formParamValueItem,
                         ];
                     }
                 }
@@ -1936,16 +1938,17 @@ class PaymentApi
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
-            $headers
+            $headers,
         );
 
         $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
+        $query         = ObjectSerializer::buildQuery($queryParams);
+
         return new Request(
             'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
-            $httpBody
+            $httpBody,
         );
     }
 
@@ -1979,8 +1982,8 @@ class PaymentApi
     private function handleResponseWithDataType(
         string $dataType,
         RequestInterface $request,
-        ResponseInterface $response
-    ): array {
+        ResponseInterface $response,
+    ) : array {
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
@@ -1992,11 +1995,11 @@ class PaymentApi
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
-                            $request->getUri()
+                            $request->getUri(),
                         ),
                         $response->getStatusCode(),
                         $response->getHeaders(),
-                        $content
+                        $content,
                     );
                 }
             }
@@ -2005,16 +2008,16 @@ class PaymentApi
         return [
             ObjectSerializer::deserialize($content, $dataType, []),
             $response->getStatusCode(),
-            $response->getHeaders()
+            $response->getHeaders(),
         ];
     }
 
     private function responseWithinRangeCode(
         string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0].'00');
-        $right = (int) ($rangeCode[0].'99');
+        int $statusCode,
+    ) : bool {
+        $left  = (int) ($rangeCode[0] . '00');
+        $right = (int) ($rangeCode[0] . '99');
 
         return $statusCode >= $left && $statusCode <= $right;
     }

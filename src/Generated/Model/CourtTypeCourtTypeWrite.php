@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * CourtTypeCourtTypeWrite
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * CourtTypeCourtTypeWrite Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializable
+final class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,8 +60,8 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'name' => 'string'
+        'id'   => 'int',
+        'name' => 'string',
     ];
 
     /**
@@ -70,24 +72,24 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'name' => null
+        'id'   => null,
+        'name' => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'name' => false
+        'id'   => false,
+        'name' => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -116,7 +118,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -124,9 +126,9 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -134,9 +136,9 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -147,7 +149,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -158,7 +160,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -170,8 +172,8 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name'
+        'id'   => 'id',
+        'name' => 'name',
     ];
 
     /**
@@ -180,8 +182,8 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName'
+        'id'   => 'setId',
+        'name' => 'setName',
     ];
 
     /**
@@ -190,8 +192,8 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName'
+        'id'   => 'getId',
+        'name' => 'getName',
     ];
 
     /**
@@ -235,7 +237,6 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -264,7 +265,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -295,7 +296,6 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets id
@@ -353,11 +353,11 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -365,7 +365,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -383,7 +383,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -395,11 +395,11 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -414,7 +414,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -426,7 +426,7 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -440,5 +440,3 @@ class CourtTypeCourtTypeWrite implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

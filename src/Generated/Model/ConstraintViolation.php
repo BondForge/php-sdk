@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ConstraintViolation
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * ConstraintViolation Class Doc Comment
@@ -42,7 +44,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,12 +61,12 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'status' => 'int',
+        'status'     => 'int',
         'violations' => '\BondForge\Sdk\Generated\Model\ConstraintViolationViolationsInner[]',
-        'detail' => 'string',
-        'type' => 'string',
-        'title' => 'string',
-        'instance' => 'string'
+        'detail'     => 'string',
+        'type'       => 'string',
+        'title'      => 'string',
+        'instance'   => 'string',
     ];
 
     /**
@@ -75,32 +77,32 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'status' => null,
+        'status'     => null,
         'violations' => null,
-        'detail' => null,
-        'type' => null,
-        'title' => null,
-        'instance' => null
+        'detail'     => null,
+        'type'       => null,
+        'title'      => null,
+        'instance'   => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'status' => false,
+        'status'     => false,
         'violations' => false,
-        'detail' => false,
-        'type' => false,
-        'title' => true,
-        'instance' => true
+        'detail'     => false,
+        'type'       => false,
+        'title'      => true,
+        'instance'   => true,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -129,7 +131,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -137,9 +139,9 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -147,9 +149,9 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -160,7 +162,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -171,7 +173,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -183,12 +185,12 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
+        'status'     => 'status',
         'violations' => 'violations',
-        'detail' => 'detail',
-        'type' => 'type',
-        'title' => 'title',
-        'instance' => 'instance'
+        'detail'     => 'detail',
+        'type'       => 'type',
+        'title'      => 'title',
+        'instance'   => 'instance',
     ];
 
     /**
@@ -197,12 +199,12 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
+        'status'     => 'setStatus',
         'violations' => 'setViolations',
-        'detail' => 'setDetail',
-        'type' => 'setType',
-        'title' => 'setTitle',
-        'instance' => 'setInstance'
+        'detail'     => 'setDetail',
+        'type'       => 'setType',
+        'title'      => 'setTitle',
+        'instance'   => 'setInstance',
     ];
 
     /**
@@ -211,12 +213,12 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
+        'status'     => 'getStatus',
         'violations' => 'getViolations',
-        'detail' => 'getDetail',
-        'type' => 'getType',
-        'title' => 'getTitle',
-        'instance' => 'getInstance'
+        'detail'     => 'getDetail',
+        'type'       => 'getType',
+        'title'      => 'getTitle',
+        'instance'   => 'getInstance',
     ];
 
     /**
@@ -260,7 +262,6 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -293,7 +294,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -325,7 +326,6 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets status
      *
@@ -356,7 +356,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets violations
      *
-     * @return \BondForge\Sdk\Generated\Model\ConstraintViolationViolationsInner[]|null
+     * @return ConstraintViolationViolationsInner[]|null
      */
     public function getViolations()
     {
@@ -366,7 +366,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets violations
      *
-     * @param \BondForge\Sdk\Generated\Model\ConstraintViolationViolationsInner[]|null $violations violations
+     * @param ConstraintViolationViolationsInner[]|null $violations violations
      *
      * @return self
      */
@@ -457,8 +457,8 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'title');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('title', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('title', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -491,8 +491,8 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'instance');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('instance', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('instance', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -504,11 +504,11 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -516,7 +516,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -534,7 +534,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -546,11 +546,11 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -565,7 +565,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -577,7 +577,7 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -591,5 +591,3 @@ class ConstraintViolation implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

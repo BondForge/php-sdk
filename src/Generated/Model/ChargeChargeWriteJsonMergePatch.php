@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ChargeChargeWriteJsonMergePatch
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * ChargeChargeWriteJsonMergePatch Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,10 +60,10 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'number' => 'string',
+        'id'          => 'int',
+        'number'      => 'string',
         'description' => 'string',
-        'bond' => 'string'
+        'bond'        => 'string',
     ];
 
     /**
@@ -72,28 +74,28 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'number' => null,
+        'id'          => null,
+        'number'      => null,
         'description' => null,
-        'bond' => 'iri-reference'
+        'bond'        => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'number' => false,
+        'id'          => false,
+        'number'      => false,
         'description' => true,
-        'bond' => false
+        'bond'        => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -122,7 +124,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -130,9 +132,9 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -140,9 +142,9 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -153,7 +155,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -164,7 +166,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -176,10 +178,10 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'number' => 'number',
+        'id'          => 'id',
+        'number'      => 'number',
         'description' => 'description',
-        'bond' => 'bond'
+        'bond'        => 'bond',
     ];
 
     /**
@@ -188,10 +190,10 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'number' => 'setNumber',
+        'id'          => 'setId',
+        'number'      => 'setNumber',
         'description' => 'setDescription',
-        'bond' => 'setBond'
+        'bond'        => 'setBond',
     ];
 
     /**
@@ -200,10 +202,10 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'number' => 'getNumber',
+        'id'          => 'getId',
+        'number'      => 'getNumber',
         'description' => 'getDescription',
-        'bond' => 'getBond'
+        'bond'        => 'getBond',
     ];
 
     /**
@@ -247,7 +249,6 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -278,7 +279,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -309,7 +310,6 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets id
@@ -388,8 +388,8 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('description', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -428,11 +428,11 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -440,7 +440,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -458,7 +458,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -470,11 +470,11 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -489,7 +489,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -501,7 +501,7 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -515,5 +515,3 @@ class ChargeChargeWriteJsonMergePatch implements ModelInterface, ArrayAccess, \J
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

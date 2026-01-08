@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ConstraintViolationJsonld
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * ConstraintViolationJsonld Class Doc Comment
@@ -42,7 +44,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,16 +61,16 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'status' => 'int',
-        'violations' => '\BondForge\Sdk\Generated\Model\ConstraintViolationViolationsInner[]',
-        'detail' => 'string',
+        'atContext'   => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
+        'atId'        => 'string',
+        'atType'      => 'string',
+        'status'      => 'int',
+        'violations'  => '\BondForge\Sdk\Generated\Model\ConstraintViolationViolationsInner[]',
+        'detail'      => 'string',
         'description' => 'string',
-        'type' => 'string',
-        'title' => 'string',
-        'instance' => 'string'
+        'type'        => 'string',
+        'title'       => 'string',
+        'instance'    => 'string',
     ];
 
     /**
@@ -79,40 +81,40 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'status' => null,
-        'violations' => null,
-        'detail' => null,
+        'atContext'   => null,
+        'atId'        => null,
+        'atType'      => null,
+        'status'      => null,
+        'violations'  => null,
+        'detail'      => null,
         'description' => null,
-        'type' => null,
-        'title' => null,
-        'instance' => null
+        'type'        => null,
+        'title'       => null,
+        'instance'    => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'status' => false,
-        'violations' => false,
-        'detail' => false,
+        'atContext'   => false,
+        'atId'        => false,
+        'atType'      => false,
+        'status'      => false,
+        'violations'  => false,
+        'detail'      => false,
         'description' => false,
-        'type' => false,
-        'title' => true,
-        'instance' => true
+        'type'        => false,
+        'title'       => true,
+        'instance'    => true,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -141,7 +143,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -149,9 +151,9 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -159,9 +161,9 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -172,7 +174,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -183,7 +185,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -195,16 +197,16 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'status' => 'status',
-        'violations' => 'violations',
-        'detail' => 'detail',
+        'atContext'   => '@context',
+        'atId'        => '@id',
+        'atType'      => '@type',
+        'status'      => 'status',
+        'violations'  => 'violations',
+        'detail'      => 'detail',
         'description' => 'description',
-        'type' => 'type',
-        'title' => 'title',
-        'instance' => 'instance'
+        'type'        => 'type',
+        'title'       => 'title',
+        'instance'    => 'instance',
     ];
 
     /**
@@ -213,16 +215,16 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'status' => 'setStatus',
-        'violations' => 'setViolations',
-        'detail' => 'setDetail',
+        'atContext'   => 'setAtContext',
+        'atId'        => 'setAtId',
+        'atType'      => 'setAtType',
+        'status'      => 'setStatus',
+        'violations'  => 'setViolations',
+        'detail'      => 'setDetail',
         'description' => 'setDescription',
-        'type' => 'setType',
-        'title' => 'setTitle',
-        'instance' => 'setInstance'
+        'type'        => 'setType',
+        'title'       => 'setTitle',
+        'instance'    => 'setInstance',
     ];
 
     /**
@@ -231,16 +233,16 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'status' => 'getStatus',
-        'violations' => 'getViolations',
-        'detail' => 'getDetail',
+        'atContext'   => 'getAtContext',
+        'atId'        => 'getAtId',
+        'atType'      => 'getAtType',
+        'status'      => 'getStatus',
+        'violations'  => 'getViolations',
+        'detail'      => 'getDetail',
         'description' => 'getDescription',
-        'type' => 'getType',
-        'title' => 'getTitle',
-        'instance' => 'getInstance'
+        'type'        => 'getType',
+        'title'       => 'getTitle',
+        'instance'    => 'getInstance',
     ];
 
     /**
@@ -284,7 +286,6 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -321,7 +322,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -345,6 +346,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -359,11 +361,10 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -373,7 +374,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -471,7 +472,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets violations
      *
-     * @return \BondForge\Sdk\Generated\Model\ConstraintViolationViolationsInner[]|null
+     * @return ConstraintViolationViolationsInner[]|null
      */
     public function getViolations()
     {
@@ -481,7 +482,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets violations
      *
-     * @param \BondForge\Sdk\Generated\Model\ConstraintViolationViolationsInner[]|null $violations violations
+     * @param ConstraintViolationViolationsInner[]|null $violations violations
      *
      * @return self
      */
@@ -599,8 +600,8 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'title');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('title', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('title', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -633,8 +634,8 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'instance');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('instance', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('instance', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -646,11 +647,11 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -658,7 +659,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -676,7 +677,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -688,11 +689,11 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -707,7 +708,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -719,7 +720,7 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -733,5 +734,3 @@ class ConstraintViolationJsonld implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

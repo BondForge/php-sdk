@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * AgentJsonldAgentReadCollection
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * AgentJsonldAgentReadCollection Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
+final class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,12 +61,12 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPITypes = [
         'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'id' => 'int',
-        'lastName' => 'string',
+        'atId'      => 'string',
+        'atType'    => 'string',
+        'id'        => 'int',
+        'lastName'  => 'string',
         'firstName' => 'string',
-        'phone' => 'string'
+        'phone'     => 'string',
     ];
 
     /**
@@ -76,33 +78,33 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPIFormats = [
         'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'id' => null,
-        'lastName' => null,
+        'atId'      => null,
+        'atType'    => null,
+        'id'        => null,
+        'lastName'  => null,
         'firstName' => null,
-        'phone' => null
+        'phone'     => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'id' => false,
-        'lastName' => false,
+        'atId'      => false,
+        'atType'    => false,
+        'id'        => false,
+        'lastName'  => false,
         'firstName' => false,
-        'phone' => true
+        'phone'     => true,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -131,7 +133,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -139,9 +141,9 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -149,9 +151,9 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -162,7 +164,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -173,7 +175,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -186,12 +188,12 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
      */
     protected static $attributeMap = [
         'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'id' => 'id',
-        'lastName' => 'lastName',
+        'atId'      => '@id',
+        'atType'    => '@type',
+        'id'        => 'id',
+        'lastName'  => 'lastName',
         'firstName' => 'firstName',
-        'phone' => 'phone'
+        'phone'     => 'phone',
     ];
 
     /**
@@ -201,12 +203,12 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
      */
     protected static $setters = [
         'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'id' => 'setId',
-        'lastName' => 'setLastName',
+        'atId'      => 'setAtId',
+        'atType'    => 'setAtType',
+        'id'        => 'setId',
+        'lastName'  => 'setLastName',
         'firstName' => 'setFirstName',
-        'phone' => 'setPhone'
+        'phone'     => 'setPhone',
     ];
 
     /**
@@ -216,12 +218,12 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
      */
     protected static $getters = [
         'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'id' => 'getId',
-        'lastName' => 'getLastName',
+        'atId'      => 'getAtId',
+        'atType'    => 'getAtType',
+        'id'        => 'getId',
+        'lastName'  => 'getLastName',
         'firstName' => 'getFirstName',
-        'phone' => 'getPhone'
+        'phone'     => 'getPhone',
     ];
 
     /**
@@ -265,7 +267,6 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -299,7 +300,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -323,6 +324,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -337,11 +339,10 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -351,7 +352,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -523,8 +524,8 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'phone');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('phone', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('phone', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -536,11 +537,11 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -548,7 +549,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -566,7 +567,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -578,11 +579,11 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -597,7 +598,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -609,7 +610,7 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -623,5 +624,3 @@ class AgentJsonldAgentReadCollection implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

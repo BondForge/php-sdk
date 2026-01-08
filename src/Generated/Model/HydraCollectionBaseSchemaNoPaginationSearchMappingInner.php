@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * HydraCollectionBaseSchemaNoPaginationSearchMappingInner
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * HydraCollectionBaseSchemaNoPaginationSearchMappingInner Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelInterface, ArrayAccess, \JsonSerializable
+final class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,10 +60,10 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
       * @var string[]
       */
     protected static $openAPITypes = [
-        'atType' => 'string',
+        'atType'   => 'string',
         'variable' => 'string',
         'property' => 'string',
-        'required' => 'bool'
+        'required' => 'bool',
     ];
 
     /**
@@ -72,28 +74,28 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'atType' => null,
+        'atType'   => null,
         'variable' => null,
         'property' => null,
-        'required' => null
+        'required' => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'atType' => false,
+        'atType'   => false,
         'variable' => false,
         'property' => true,
-        'required' => false
+        'required' => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -122,7 +124,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -130,9 +132,9 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -140,9 +142,9 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -153,7 +155,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -164,7 +166,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -176,10 +178,10 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
      * @var string[]
      */
     protected static $attributeMap = [
-        'atType' => '@type',
+        'atType'   => '@type',
         'variable' => 'variable',
         'property' => 'property',
-        'required' => 'required'
+        'required' => 'required',
     ];
 
     /**
@@ -188,10 +190,10 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
      * @var string[]
      */
     protected static $setters = [
-        'atType' => 'setAtType',
+        'atType'   => 'setAtType',
         'variable' => 'setVariable',
         'property' => 'setProperty',
-        'required' => 'setRequired'
+        'required' => 'setRequired',
     ];
 
     /**
@@ -200,10 +202,10 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
      * @var string[]
      */
     protected static $getters = [
-        'atType' => 'getAtType',
+        'atType'   => 'getAtType',
         'variable' => 'getVariable',
         'property' => 'getProperty',
-        'required' => 'getRequired'
+        'required' => 'getRequired',
     ];
 
     /**
@@ -247,7 +249,6 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -278,7 +279,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -309,7 +310,6 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets atType
@@ -388,8 +388,8 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
             array_push($this->openAPINullablesSetToNull, 'property');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('property', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('property', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -428,11 +428,11 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -440,7 +440,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -458,7 +458,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -470,11 +470,11 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -489,7 +489,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -501,7 +501,7 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -515,5 +515,3 @@ class HydraCollectionBaseSchemaNoPaginationSearchMappingInner implements ModelIn
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

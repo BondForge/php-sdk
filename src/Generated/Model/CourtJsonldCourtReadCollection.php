@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * CourtJsonldCourtReadCollection
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * CourtJsonldCourtReadCollection Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
+final class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,12 +61,12 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPITypes = [
         'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'id' => 'int',
-        'date' => '\DateTime',
-        'room' => 'string',
-        'judge' => 'string'
+        'atId'      => 'string',
+        'atType'    => 'string',
+        'id'        => 'int',
+        'date'      => '\DateTime',
+        'room'      => 'string',
+        'judge'     => 'string',
     ];
 
     /**
@@ -76,33 +78,33 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPIFormats = [
         'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'id' => null,
-        'date' => 'date-time',
-        'room' => null,
-        'judge' => null
+        'atId'      => null,
+        'atType'    => null,
+        'id'        => null,
+        'date'      => 'date-time',
+        'room'      => null,
+        'judge'     => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'id' => false,
-        'date' => false,
-        'room' => true,
-        'judge' => true
+        'atId'      => false,
+        'atType'    => false,
+        'id'        => false,
+        'date'      => false,
+        'room'      => true,
+        'judge'     => true,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -131,7 +133,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -139,9 +141,9 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -149,9 +151,9 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -162,7 +164,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -173,7 +175,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -186,12 +188,12 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
      */
     protected static $attributeMap = [
         'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'id' => 'id',
-        'date' => 'date',
-        'room' => 'room',
-        'judge' => 'judge'
+        'atId'      => '@id',
+        'atType'    => '@type',
+        'id'        => 'id',
+        'date'      => 'date',
+        'room'      => 'room',
+        'judge'     => 'judge',
     ];
 
     /**
@@ -201,12 +203,12 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
      */
     protected static $setters = [
         'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'id' => 'setId',
-        'date' => 'setDate',
-        'room' => 'setRoom',
-        'judge' => 'setJudge'
+        'atId'      => 'setAtId',
+        'atType'    => 'setAtType',
+        'id'        => 'setId',
+        'date'      => 'setDate',
+        'room'      => 'setRoom',
+        'judge'     => 'setJudge',
     ];
 
     /**
@@ -216,12 +218,12 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
      */
     protected static $getters = [
         'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'id' => 'getId',
-        'date' => 'getDate',
-        'room' => 'getRoom',
-        'judge' => 'getJudge'
+        'atId'      => 'getAtId',
+        'atType'    => 'getAtType',
+        'id'        => 'getId',
+        'date'      => 'getDate',
+        'room'      => 'getRoom',
+        'judge'     => 'getJudge',
     ];
 
     /**
@@ -265,7 +267,6 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -299,7 +300,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -323,6 +324,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -337,11 +339,10 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -351,7 +352,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -496,8 +497,8 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'room');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('room', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('room', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -530,8 +531,8 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'judge');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('judge', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('judge', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -543,11 +544,11 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -555,7 +556,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -573,7 +574,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -585,11 +586,11 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -604,7 +605,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -616,7 +617,7 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -630,5 +631,3 @@ class CourtJsonldCourtReadCollection implements ModelInterface, ArrayAccess, \Js
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

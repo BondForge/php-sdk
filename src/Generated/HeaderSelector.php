@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * HeaderSelector
  * PHP version 8.1
@@ -36,7 +38,7 @@ namespace BondForge\Sdk\Generated;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class HeaderSelector
+final class HeaderSelector
 {
     /**
      * @param string[] $accept
@@ -44,7 +46,7 @@ class HeaderSelector
      * @param bool     $isMultipart
      * @return string[]
      */
-    public function selectHeaders(array $accept, string $contentType, bool $isMultipart): array
+    public function selectHeaders(array $accept, string $contentType, bool $isMultipart) : array
     {
         $headers = [];
 
@@ -54,7 +56,7 @@ class HeaderSelector
         }
 
         if (!$isMultipart) {
-            if($contentType === '') {
+            if ($contentType === '') {
                 $contentType = 'application/json';
             }
 
@@ -71,7 +73,7 @@ class HeaderSelector
      *
      * @return null|string Accept (e.g. application/json)
      */
-    private function selectAcceptHeader(array $accept): ?string
+    private function selectAcceptHeader(array $accept) : ?string
     {
         # filter out empty entries
         $accept = array_filter($accept);
@@ -102,27 +104,28 @@ class HeaderSelector
     * @param string $searchString
     * @return bool
     */
-    public function isJsonMime(string $searchString): bool
+    public function isJsonMime(string $searchString) : bool
     {
         return preg_match('~^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)~', $searchString) === 1;
     }
-    
+
     /**
     * Select all items from a list containing a JSON mime type
     *
     * @param array $mimeList
     * @return array
     */
-    private function selectJsonMimeList(array $mimeList): array {
+    private function selectJsonMimeList(array $mimeList) : array
+    {
         $jsonMimeList = [];
         foreach ($mimeList as $mime) {
-            if($this->isJsonMime($mime)) {
+            if ($this->isJsonMime($mime)) {
                 $jsonMimeList[] = $mime;
             }
         }
+
         return $jsonMimeList;
     }
-
 
     /**
     * Create an Accept header string from the given "Accept" headers array, recalculating all weights
@@ -132,12 +135,12 @@ class HeaderSelector
     *
     * @return string "Accept" Header (e.g. "application/json, text/html; q=0.9")
     */
-    private function getAcceptHeaderWithAdjustedWeight(array $accept, array $headersWithJson): string
+    private function getAcceptHeaderWithAdjustedWeight(array $accept, array $headersWithJson) : string
     {
         $processedHeaders = [
             'withApplicationJson' => [],
-            'withJson' => [],
-            'withoutJson' => [],
+            'withJson'            => [],
+            'withoutJson'         => [],
         ];
 
         foreach ($accept as $header) {
@@ -158,7 +161,7 @@ class HeaderSelector
 
         $hasMoreThan28Headers = count($accept) > 28;
 
-        foreach($processedHeaders as $headers) {
+        foreach ($processedHeaders as $headers) {
             if (count($headers) > 0) {
                 $acceptHeaders[] = $this->adjustWeight($headers, $currentWeight, $hasMoreThan28Headers);
             }
@@ -176,13 +179,13 @@ class HeaderSelector
      *
      * @return array with the header and its weight
      */
-    private function getHeaderAndWeight(string $header): array
+    private function getHeaderAndWeight(string $header) : array
     {
         # matches headers with weight, splitting the header and the weight in $outputArray
         if (preg_match('/(.*);\s*q=(1(?:\.0+)?|0\.\d+)$/', $header, $outputArray) === 1) {
             $headerData = [
                 'header' => $outputArray[1],
-                'weight' => (int)($outputArray[2] * 1000),
+                'weight' => (int) ($outputArray[2] * 1000),
             ];
         } else {
             $headerData = [
@@ -200,7 +203,7 @@ class HeaderSelector
      * @param bool    $hasMoreThan28Headers
      * @return string[] array of adjusted "Accept" headers
      */
-    private function adjustWeight(array $headers, float &$currentWeight, bool $hasMoreThan28Headers): array
+    private function adjustWeight(array $headers, float &$currentWeight, bool $hasMoreThan28Headers) : array
     {
         usort($headers, function (array $a, array $b) {
             return $b['weight'] - $a['weight'];
@@ -208,8 +211,7 @@ class HeaderSelector
 
         $acceptHeaders = [];
         foreach ($headers as $index => $header) {
-            if($index > 0 && $headers[$index - 1]['weight'] > $header['weight'])
-            {
+            if ($index > 0 && $headers[$index - 1]['weight'] > $header['weight']) {
                 $currentWeight = $this->getNextWeight($currentWeight, $hasMoreThan28Headers);
             }
 
@@ -228,9 +230,9 @@ class HeaderSelector
      * @param int    $weight
      * @return string
      */
-    private function buildAcceptHeader(string $header, int $weight): string
+    private function buildAcceptHeader(string $header, int $weight) : string
     {
-        if($weight === 1000) {
+        if ($weight === 1000) {
             return $header;
         }
 
@@ -259,7 +261,7 @@ class HeaderSelector
      * @param bool $hasMoreThan28Headers
      * @return int
      */
-    public function getNextWeight(int $currentWeight, bool $hasMoreThan28Headers): int
+    public function getNextWeight(int $currentWeight, bool $hasMoreThan28Headers) : int
     {
         if ($currentWeight <= 1) {
             return 1;
@@ -269,6 +271,6 @@ class HeaderSelector
             return $currentWeight - 1;
         }
 
-        return $currentWeight - 10 ** floor( log10($currentWeight - 1) );
+        return $currentWeight - 10 ** floor(log10($currentWeight - 1));
     }
 }

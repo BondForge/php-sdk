@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * BondJsonldBondReadCollection
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * BondJsonldBondReadCollection Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
+final class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,14 +61,14 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'id' => 'int',
-        'bondDate' => '\DateTime',
-        'amount' => 'string',
+        'atId'      => 'string',
+        'atType'    => 'string',
+        'id'        => 'int',
+        'bondDate'  => '\DateTime',
+        'amount'    => 'string',
         'boundOver' => 'bool',
-        'closedAt' => '\DateTime',
-        'defendant' => 'string'
+        'closedAt'  => '\DateTime',
+        'defendant' => 'string',
     ];
 
     /**
@@ -78,37 +80,37 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'id' => null,
-        'bondDate' => 'date-time',
-        'amount' => null,
+        'atId'      => null,
+        'atType'    => null,
+        'id'        => null,
+        'bondDate'  => 'date-time',
+        'amount'    => null,
         'boundOver' => null,
-        'closedAt' => 'date-time',
-        'defendant' => 'iri-reference'
+        'closedAt'  => 'date-time',
+        'defendant' => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'id' => false,
-        'bondDate' => false,
-        'amount' => false,
+        'atId'      => false,
+        'atType'    => false,
+        'id'        => false,
+        'bondDate'  => false,
+        'amount'    => false,
         'boundOver' => false,
-        'closedAt' => true,
-        'defendant' => false
+        'closedAt'  => true,
+        'defendant' => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -137,7 +139,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -145,9 +147,9 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -155,9 +157,9 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -168,7 +170,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -179,7 +181,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -192,14 +194,14 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'id' => 'id',
-        'bondDate' => 'bondDate',
-        'amount' => 'amount',
+        'atId'      => '@id',
+        'atType'    => '@type',
+        'id'        => 'id',
+        'bondDate'  => 'bondDate',
+        'amount'    => 'amount',
         'boundOver' => 'boundOver',
-        'closedAt' => 'closedAt',
-        'defendant' => 'defendant'
+        'closedAt'  => 'closedAt',
+        'defendant' => 'defendant',
     ];
 
     /**
@@ -209,14 +211,14 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'id' => 'setId',
-        'bondDate' => 'setBondDate',
-        'amount' => 'setAmount',
+        'atId'      => 'setAtId',
+        'atType'    => 'setAtType',
+        'id'        => 'setId',
+        'bondDate'  => 'setBondDate',
+        'amount'    => 'setAmount',
         'boundOver' => 'setBoundOver',
-        'closedAt' => 'setClosedAt',
-        'defendant' => 'setDefendant'
+        'closedAt'  => 'setClosedAt',
+        'defendant' => 'setDefendant',
     ];
 
     /**
@@ -226,14 +228,14 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'id' => 'getId',
-        'bondDate' => 'getBondDate',
-        'amount' => 'getAmount',
+        'atId'      => 'getAtId',
+        'atType'    => 'getAtType',
+        'id'        => 'getId',
+        'bondDate'  => 'getBondDate',
+        'amount'    => 'getAmount',
         'boundOver' => 'getBoundOver',
-        'closedAt' => 'getClosedAt',
-        'defendant' => 'getDefendant'
+        'closedAt'  => 'getClosedAt',
+        'defendant' => 'getDefendant',
     ];
 
     /**
@@ -277,7 +279,6 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -313,7 +314,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -337,6 +338,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -351,11 +353,10 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -365,7 +366,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -564,8 +565,8 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'closedAt');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('closedAt', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('closedAt', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -604,11 +605,11 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -616,7 +617,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -634,7 +635,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -646,11 +647,11 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -665,7 +666,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -677,7 +678,7 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -691,5 +692,3 @@ class BondJsonldBondReadCollection implements ModelInterface, ArrayAccess, \Json
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

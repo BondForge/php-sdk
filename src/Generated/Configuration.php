@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Configuration
  * PHP version 8.1
@@ -37,9 +39,9 @@ namespace BondForge\Sdk\Generated;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Configuration
+final class Configuration
 {
-    public const BOOLEAN_FORMAT_INT = 'int';
+    public const BOOLEAN_FORMAT_INT    = 'int';
     public const BOOLEAN_FORMAT_STRING = 'string';
 
     /**
@@ -157,6 +159,7 @@ class Configuration
     public function setApiKey($apiKeyIdentifier, $key)
     {
         $this->apiKeys[$apiKeyIdentifier] = $key;
+
         return $this;
     }
 
@@ -183,6 +186,7 @@ class Configuration
     public function setApiKeyPrefix($apiKeyIdentifier, $prefix)
     {
         $this->apiKeyPrefixes[$apiKeyIdentifier] = $prefix;
+
         return $this;
     }
 
@@ -208,6 +212,7 @@ class Configuration
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
+
         return $this;
     }
 
@@ -240,7 +245,7 @@ class Configuration
      *
      * @return string Boolean format for query string
      */
-    public function getBooleanFormatForQueryString(): string
+    public function getBooleanFormatForQueryString() : string
     {
         return $this->booleanFormatForQueryString;
     }
@@ -255,6 +260,7 @@ class Configuration
     public function setUsername($username)
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -278,6 +284,7 @@ class Configuration
     public function setPassword($password)
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -301,6 +308,7 @@ class Configuration
     public function setHost($host)
     {
         $this->host = $host;
+
         return $this;
     }
 
@@ -329,6 +337,7 @@ class Configuration
         }
 
         $this->userAgent = $userAgent;
+
         return $this;
     }
 
@@ -352,6 +361,7 @@ class Configuration
     public function setDebug($debug)
     {
         $this->debug = $debug;
+
         return $this;
     }
 
@@ -375,6 +385,7 @@ class Configuration
     public function setDebugFile($debugFile)
     {
         $this->debugFile = $debugFile;
+
         return $this;
     }
 
@@ -398,6 +409,7 @@ class Configuration
     public function setTempFolderPath($tempFolderPath)
     {
         $this->tempFolderPath = $tempFolderPath;
+
         return $this;
     }
 
@@ -416,11 +428,12 @@ class Configuration
      *
      * @return $this
      */
-     public function setCertFile($certFile)
-     {
+    public function setCertFile($certFile)
+    {
         $this->certFile = $certFile;
+
         return $this;
-     }
+    }
 
     /**
      * Gets the certificate file path, for mTLS
@@ -437,11 +450,12 @@ class Configuration
      *
      * @return $this
      */
-     public function setKeyFile($keyFile)
-     {
+    public function setKeyFile($keyFile)
+    {
         $this->keyFile = $keyFile;
+
         return $this;
-     }
+    }
 
     /**
      * Gets the certificate key path, for mTLS
@@ -452,7 +466,6 @@ class Configuration
     {
         return $this->keyFile;
     }
-    
 
     /**
      * Gets the default configuration instance
@@ -487,7 +500,7 @@ class Configuration
      */
     public static function toDebugReport()
     {
-        $report  = 'PHP SDK (BondForge\Sdk\Generated) Debug Report:' . PHP_EOL;
+        $report = 'PHP SDK (BondForge\Sdk\Generated) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: 1.0.0' . PHP_EOL;
@@ -530,9 +543,9 @@ class Configuration
     {
         return [
             [
-                "url" => "",
-                "description" => "",
-            ]
+                'url'         => '',
+                'description' => '',
+            ],
         ];
     }
 
@@ -546,29 +559,29 @@ class Configuration
     */
     public static function getHostString(array $hostSettings, $hostIndex, ?array $variables = null)
     {
-        if (null === $variables) {
+        if ($variables === null) {
             $variables = [];
         }
 
         // check array index out of bound
         if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new \InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than ".count($hostSettings));
+            throw new \InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than " . count($hostSettings));
         }
 
         $host = $hostSettings[$hostIndex];
-        $url = $host["url"];
+        $url  = $host['url'];
 
         // go through variable and assign a value
-        foreach ($host["variables"] ?? [] as $name => $variable) {
+        foreach ($host['variables'] ?? [] as $name => $variable) {
             if (array_key_exists($name, $variables)) { // check to see if it's in the variables provided by the user
-                if (!isset($variable['enum_values']) || in_array($variables[$name], $variable["enum_values"], true)) { // check to see if the value is in the enum
-                    $url = str_replace("{".$name."}", $variables[$name], $url);
+                if (!isset($variable['enum_values']) || in_array($variables[$name], $variable['enum_values'], true)) { // check to see if the value is in the enum
+                    $url = str_replace('{' . $name . '}', $variables[$name], $url);
                 } else {
-                    throw new \InvalidArgumentException("The variable `$name` in the host URL has invalid value ".$variables[$name].". Must be ".join(',', $variable["enum_values"]).".");
+                    throw new \InvalidArgumentException("The variable `$name` in the host URL has invalid value " . $variables[$name] . '. Must be ' . join(',', $variable['enum_values']) . '.');
                 }
             } else {
                 // use default value
-                $url = str_replace("{".$name."}", $variable["default_value"], $url);
+                $url = str_replace('{' . $name . '}', $variable['default_value'], $url);
             }
         }
 

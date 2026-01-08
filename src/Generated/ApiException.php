@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ApiException
  * PHP version 8.1
@@ -28,7 +30,7 @@
 
 namespace BondForge\Sdk\Generated;
 
-use \Exception;
+use Exception;
 
 /**
  * ApiException Class Doc Comment
@@ -38,7 +40,7 @@ use \Exception;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ApiException extends Exception
+final class ApiException extends Exception
 {
     /**
      * The HTTP body of the server response either as Json or string.
@@ -69,11 +71,11 @@ class ApiException extends Exception
      * @param string[][]|null       $responseHeaders HTTP response header
      * @param \stdClass|string|null $responseBody    HTTP decoded body of the server response either as \stdClass or string
      */
-    public function __construct($message = "", $code = 0, $responseHeaders = [], $responseBody = null)
+    public function __construct($message = '', $code = 0, $responseHeaders = [], $responseBody = null)
     {
         parent::__construct($message, $code);
         $this->responseHeaders = $responseHeaders;
-        $this->responseBody = $responseBody;
+        $this->responseBody    = $responseBody;
     }
 
     /**

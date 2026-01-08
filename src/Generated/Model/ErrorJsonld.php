@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * ErrorJsonld
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * ErrorJsonld Class Doc Comment
@@ -42,7 +44,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,15 +61,15 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'title' => 'string',
-        'detail' => 'string',
-        'status' => 'float',
-        'instance' => 'string',
-        'type' => 'string',
-        'description' => 'string'
+        'atContext'   => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
+        'atId'        => 'string',
+        'atType'      => 'string',
+        'title'       => 'string',
+        'detail'      => 'string',
+        'status'      => 'float',
+        'instance'    => 'string',
+        'type'        => 'string',
+        'description' => 'string',
     ];
 
     /**
@@ -78,38 +80,38 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'title' => null,
-        'detail' => null,
-        'status' => null,
-        'instance' => null,
-        'type' => null,
-        'description' => null
+        'atContext'   => null,
+        'atId'        => null,
+        'atType'      => null,
+        'title'       => null,
+        'detail'      => null,
+        'status'      => null,
+        'instance'    => null,
+        'type'        => null,
+        'description' => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'title' => true,
-        'detail' => true,
-        'status' => true,
-        'instance' => true,
-        'type' => false,
-        'description' => true
+        'atContext'   => false,
+        'atId'        => false,
+        'atType'      => false,
+        'title'       => true,
+        'detail'      => true,
+        'status'      => true,
+        'instance'    => true,
+        'type'        => false,
+        'description' => true,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -138,7 +140,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -146,9 +148,9 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -156,9 +158,9 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -169,7 +171,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -180,7 +182,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -192,15 +194,15 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'title' => 'title',
-        'detail' => 'detail',
-        'status' => 'status',
-        'instance' => 'instance',
-        'type' => 'type',
-        'description' => 'description'
+        'atContext'   => '@context',
+        'atId'        => '@id',
+        'atType'      => '@type',
+        'title'       => 'title',
+        'detail'      => 'detail',
+        'status'      => 'status',
+        'instance'    => 'instance',
+        'type'        => 'type',
+        'description' => 'description',
     ];
 
     /**
@@ -209,15 +211,15 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'title' => 'setTitle',
-        'detail' => 'setDetail',
-        'status' => 'setStatus',
-        'instance' => 'setInstance',
-        'type' => 'setType',
-        'description' => 'setDescription'
+        'atContext'   => 'setAtContext',
+        'atId'        => 'setAtId',
+        'atType'      => 'setAtType',
+        'title'       => 'setTitle',
+        'detail'      => 'setDetail',
+        'status'      => 'setStatus',
+        'instance'    => 'setInstance',
+        'type'        => 'setType',
+        'description' => 'setDescription',
     ];
 
     /**
@@ -226,15 +228,15 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'title' => 'getTitle',
-        'detail' => 'getDetail',
-        'status' => 'getStatus',
-        'instance' => 'getInstance',
-        'type' => 'getType',
-        'description' => 'getDescription'
+        'atContext'   => 'getAtContext',
+        'atId'        => 'getAtId',
+        'atType'      => 'getAtType',
+        'title'       => 'getTitle',
+        'detail'      => 'getDetail',
+        'status'      => 'getStatus',
+        'instance'    => 'getInstance',
+        'type'        => 'getType',
+        'description' => 'getDescription',
     ];
 
     /**
@@ -278,7 +280,6 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -314,7 +315,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -338,6 +339,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -352,11 +354,10 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -366,7 +367,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -457,8 +458,8 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'title');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('title', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('title', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -491,8 +492,8 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'detail');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('detail', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('detail', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -525,8 +526,8 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'status');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('status', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('status', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -559,8 +560,8 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'instance');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('instance', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('instance', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -620,8 +621,8 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('description', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -633,11 +634,11 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -645,7 +646,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -663,7 +664,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -675,11 +676,11 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -694,7 +695,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -706,7 +707,7 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -720,5 +721,3 @@ class ErrorJsonld implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

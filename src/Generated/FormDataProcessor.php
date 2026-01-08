@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * FormDataProcessor
  * PHP version 7.4
@@ -29,11 +31,11 @@
 namespace BondForge\Sdk\Generated;
 
 use ArrayAccess;
+use BondForge\Sdk\Generated\Model\ModelInterface;
 use DateTime;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 use SplFileObject;
-use BondForge\Sdk\Generated\Model\ModelInterface;
 
 /**
  * FormDataProcessor Class Doc Comment
@@ -43,7 +45,7 @@ use BondForge\Sdk\Generated\Model\ModelInterface;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class FormDataProcessor
+final class FormDataProcessor
 {
     /**
      * Tags whether payload passed to ::prepare() contains one or more
@@ -60,10 +62,10 @@ class FormDataProcessor
      *
      * @return array [key => value] of formdata
      */
-    public function prepare(array $values): array
+    public function prepare(array $values) : array
     {
         $this->has_file = false;
-        $result = [];
+        $result         = [];
 
         foreach ($values as $k => $v) {
             if ($v === null) {
@@ -83,7 +85,7 @@ class FormDataProcessor
      *
      * credit: https://github.com/FranBar1966/FlatPHP
      */
-    public static function flatten(array $source, string $start = ''): array
+    public static function flatten(array $source, string $start = '') : array
     {
         $opt = [
             'prefix'          => '[',
@@ -109,10 +111,10 @@ class FormDataProcessor
         }
 
         $currentName = $start;
-        $result = [];
+        $result      = [];
 
         foreach ($source as $key => $val) {
-            $currentName .= $currentPrefix.$key;
+            $currentName .= $currentPrefix . $key;
 
             if (is_array($val) && !empty($val)) {
                 $currentName .= $currentSuffix;
@@ -174,7 +176,7 @@ class FormDataProcessor
      * json_decode(json_encode()) because any given model may have binary data
      * or other data that cannot be serialized to a JSON string
      */
-    protected function processModel(ModelInterface $model): array
+    protected function processModel(ModelInterface $model) : array
     {
         $result = [];
 
@@ -186,7 +188,7 @@ class FormDataProcessor
             }
 
             if (strpos($type, '\SplFileObject') !== false) {
-                $file = is_array($value) ? $value : [$value];
+                $file          = is_array($value) ? $value : [$value];
                 $result[$name] = $this->processFiles($file);
 
                 continue;
@@ -213,7 +215,7 @@ class FormDataProcessor
     /**
      * Handle file data
      */
-    protected function processFiles(array $files): array
+    protected function processFiles(array $files) : array
     {
         $this->has_file = true;
 

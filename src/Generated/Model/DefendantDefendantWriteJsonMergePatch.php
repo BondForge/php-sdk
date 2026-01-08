@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * DefendantDefendantWriteJsonMergePatch
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * DefendantDefendantWriteJsonMergePatch Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,13 +60,13 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
       * @var string[]
       */
     protected static $openAPITypes = [
-        'lastName' => 'string',
-        'firstName' => 'string',
+        'lastName'   => 'string',
+        'firstName'  => 'string',
         'middleName' => 'string',
-        'suffix' => 'string',
+        'suffix'     => 'string',
         'restricted' => 'string',
-        'address' => 'object',
-        'phone' => 'object'
+        'address'    => 'object',
+        'phone'      => 'object',
     ];
 
     /**
@@ -75,34 +77,34 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'lastName' => null,
-        'firstName' => null,
+        'lastName'   => null,
+        'firstName'  => null,
         'middleName' => null,
-        'suffix' => null,
+        'suffix'     => null,
         'restricted' => null,
-        'address' => null,
-        'phone' => null
+        'address'    => null,
+        'phone'      => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'lastName' => false,
-        'firstName' => false,
+        'lastName'   => false,
+        'firstName'  => false,
         'middleName' => true,
-        'suffix' => true,
+        'suffix'     => true,
         'restricted' => false,
-        'address' => false,
-        'phone' => false
+        'address'    => false,
+        'phone'      => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -131,7 +133,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -139,9 +141,9 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -149,9 +151,9 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -162,7 +164,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -173,7 +175,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -185,13 +187,13 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $attributeMap = [
-        'lastName' => 'last_name',
-        'firstName' => 'first_name',
+        'lastName'   => 'last_name',
+        'firstName'  => 'first_name',
         'middleName' => 'middle_name',
-        'suffix' => 'suffix',
+        'suffix'     => 'suffix',
         'restricted' => 'restricted',
-        'address' => 'address',
-        'phone' => 'phone'
+        'address'    => 'address',
+        'phone'      => 'phone',
     ];
 
     /**
@@ -200,13 +202,13 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $setters = [
-        'lastName' => 'setLastName',
-        'firstName' => 'setFirstName',
+        'lastName'   => 'setLastName',
+        'firstName'  => 'setFirstName',
         'middleName' => 'setMiddleName',
-        'suffix' => 'setSuffix',
+        'suffix'     => 'setSuffix',
         'restricted' => 'setRestricted',
-        'address' => 'setAddress',
-        'phone' => 'setPhone'
+        'address'    => 'setAddress',
+        'phone'      => 'setPhone',
     ];
 
     /**
@@ -215,13 +217,13 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
      * @var string[]
      */
     protected static $getters = [
-        'lastName' => 'getLastName',
-        'firstName' => 'getFirstName',
+        'lastName'   => 'getLastName',
+        'firstName'  => 'getFirstName',
         'middleName' => 'getMiddleName',
-        'suffix' => 'getSuffix',
+        'suffix'     => 'getSuffix',
         'restricted' => 'getRestricted',
-        'address' => 'getAddress',
-        'phone' => 'getPhone'
+        'address'    => 'getAddress',
+        'phone'      => 'getPhone',
     ];
 
     /**
@@ -265,9 +267,9 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
         return self::$openAPIModelName;
     }
 
-    public const RESTRICTED_NONE = 'none';
+    public const RESTRICTED_NONE     = 'none';
     public const RESTRICTED_APPROVAL = 'approval';
-    public const RESTRICTED_DNB = 'dnb';
+    public const RESTRICTED_DNB      = 'dnb';
 
     /**
      * Gets allowable values of the enum
@@ -316,7 +318,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -339,7 +341,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'restricted', must be one of '%s'",
                 $this->container['restricted'],
-                implode("', '", $allowedValues)
+                implode("', '", $allowedValues),
             );
         }
 
@@ -356,7 +358,6 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets lastName
@@ -435,8 +436,8 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
             array_push($this->openAPINullablesSetToNull, 'middleName');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('middleName', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('middleName', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -469,8 +470,8 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
             array_push($this->openAPINullablesSetToNull, 'suffix');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('suffix', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('suffix', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -508,8 +509,8 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
                 sprintf(
                     "Invalid value '%s' for 'restricted', must be one of '%s'",
                     $restricted,
-                    implode("', '", $allowedValues)
-                )
+                    implode("', '", $allowedValues),
+                ),
             );
         }
         $this->container['restricted'] = $restricted;
@@ -573,11 +574,11 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -585,7 +586,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -603,7 +604,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -615,11 +616,11 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -634,7 +635,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -646,7 +647,7 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -660,5 +661,3 @@ class DefendantDefendantWriteJsonMergePatch implements ModelInterface, ArrayAcce
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

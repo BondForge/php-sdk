@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * AgentAgentWriteJsonMergePatch
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * AgentAgentWriteJsonMergePatch Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
+final class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,11 +60,11 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'lastName' => 'string',
+        'id'        => 'int',
+        'lastName'  => 'string',
         'firstName' => 'string',
-        'agencies' => 'string[]',
-        'phone' => 'string'
+        'agencies'  => 'string[]',
+        'phone'     => 'string',
     ];
 
     /**
@@ -73,30 +75,30 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'lastName' => null,
+        'id'        => null,
+        'lastName'  => null,
         'firstName' => null,
-        'agencies' => 'iri-reference',
-        'phone' => null
+        'agencies'  => 'iri-reference',
+        'phone'     => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'lastName' => false,
+        'id'        => false,
+        'lastName'  => false,
         'firstName' => false,
-        'agencies' => false,
-        'phone' => true
+        'agencies'  => false,
+        'phone'     => true,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -125,7 +127,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -133,9 +135,9 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -143,9 +145,9 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -156,7 +158,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -167,7 +169,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -179,11 +181,11 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'lastName' => 'lastName',
+        'id'        => 'id',
+        'lastName'  => 'lastName',
         'firstName' => 'firstName',
-        'agencies' => 'agencies',
-        'phone' => 'phone'
+        'agencies'  => 'agencies',
+        'phone'     => 'phone',
     ];
 
     /**
@@ -192,11 +194,11 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'lastName' => 'setLastName',
+        'id'        => 'setId',
+        'lastName'  => 'setLastName',
         'firstName' => 'setFirstName',
-        'agencies' => 'setAgencies',
-        'phone' => 'setPhone'
+        'agencies'  => 'setAgencies',
+        'phone'     => 'setPhone',
     ];
 
     /**
@@ -205,11 +207,11 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'lastName' => 'getLastName',
+        'id'        => 'getId',
+        'lastName'  => 'getLastName',
         'firstName' => 'getFirstName',
-        'agencies' => 'getAgencies',
-        'phone' => 'getPhone'
+        'agencies'  => 'getAgencies',
+        'phone'     => 'getPhone',
     ];
 
     /**
@@ -253,7 +255,6 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -285,7 +286,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -316,7 +317,6 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets id
@@ -449,8 +449,8 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'phone');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('phone', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('phone', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -462,11 +462,11 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -474,7 +474,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -492,7 +492,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -504,11 +504,11 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -523,7 +523,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -535,7 +535,7 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -549,5 +549,3 @@ class AgentAgentWriteJsonMergePatch implements ModelInterface, ArrayAccess, \Jso
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

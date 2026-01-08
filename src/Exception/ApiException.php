@@ -1,41 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BondForge\Sdk\Exception;
 
 use BondForge\Sdk\Generated\ApiException as GeneratedApiException;
 use Throwable;
 
-class ApiException extends BondForgeException
+final class ApiException extends BondForgeException
 {
     private ?int $httpStatusCode;
     private $responseBody;
     private array $responseHeaders;
 
     public function __construct(
-        string $message = "",
+        string $message = '',
         int $code = 0,
         array $responseHeaders = [],
         $responseBody = null,
-        ?Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
         parent::__construct($message, $code, $previous);
-        $this->httpStatusCode = $code;
+        $this->httpStatusCode  = $code;
         $this->responseHeaders = $responseHeaders;
-        $this->responseBody = $responseBody;
+        $this->responseBody    = $responseBody;
     }
 
-    public static function fromGenerated(GeneratedApiException $e): self
+    public static function fromGenerated(GeneratedApiException $e) : self
     {
         return new self(
             $e->getMessage(),
             $e->getCode(),
             $e->getResponseHeaders() ?? [],
             $e->getResponseBody(),
-            $e
+            $e,
         );
     }
 
-    public function getHttpStatusCode(): ?int
+    public function getHttpStatusCode() : ?int
     {
         return $this->httpStatusCode;
     }
@@ -45,14 +47,15 @@ class ApiException extends BondForgeException
         return $this->responseBody;
     }
 
-    public function getResponseHeaders(): array
+    public function getResponseHeaders() : array
     {
         return $this->responseHeaders;
     }
 
-    public function getRequestId(): ?string
+    public function getRequestId() : ?string
     {
         $headers = array_change_key_case($this->responseHeaders, CASE_LOWER);
+
         return $headers['x-request-id'][0] ?? $headers['x-correlation-id'][0] ?? null;
     }
 }

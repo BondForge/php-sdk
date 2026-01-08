@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BondForge\Sdk\Tests;
 
 use BondForge\Sdk\BondForgeClient;
 use PHPUnit\Framework\TestCase;
 
-class BondForgeClientTest extends TestCase
+final class BondForgeClientTest extends TestCase
 {
     public function testWithApiKeys()
     {

@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * DefendantJsonldDefendantReadCollectionDefendantReadItem
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * DefendantJsonldDefendantReadCollectionDefendantReadItem Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelInterface, ArrayAccess, \JsonSerializable
+final class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,17 +60,17 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
       * @var string[]
       */
     protected static $openAPITypes = [
-        'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'lastName' => 'string',
-        'firstName' => 'string',
+        'atContext'  => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
+        'atId'       => 'string',
+        'atType'     => 'string',
+        'lastName'   => 'string',
+        'firstName'  => 'string',
         'middleName' => 'string',
-        'suffix' => 'string',
+        'suffix'     => 'string',
         'restricted' => 'string',
-        'address' => 'object',
-        'phone' => 'object',
-        'bonds' => 'string[]'
+        'address'    => 'object',
+        'phone'      => 'object',
+        'bonds'      => 'string[]',
     ];
 
     /**
@@ -79,42 +81,42 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'lastName' => null,
-        'firstName' => null,
+        'atContext'  => null,
+        'atId'       => null,
+        'atType'     => null,
+        'lastName'   => null,
+        'firstName'  => null,
         'middleName' => null,
-        'suffix' => null,
+        'suffix'     => null,
         'restricted' => null,
-        'address' => null,
-        'phone' => null,
-        'bonds' => 'iri-reference'
+        'address'    => null,
+        'phone'      => null,
+        'bonds'      => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'lastName' => false,
-        'firstName' => false,
+        'atContext'  => false,
+        'atId'       => false,
+        'atType'     => false,
+        'lastName'   => false,
+        'firstName'  => false,
         'middleName' => true,
-        'suffix' => true,
+        'suffix'     => true,
         'restricted' => false,
-        'address' => false,
-        'phone' => false,
-        'bonds' => false
+        'address'    => false,
+        'phone'      => false,
+        'bonds'      => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -143,7 +145,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -151,9 +153,9 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -161,9 +163,9 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -174,7 +176,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -185,7 +187,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -197,17 +199,17 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
      * @var string[]
      */
     protected static $attributeMap = [
-        'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'lastName' => 'last_name',
-        'firstName' => 'first_name',
+        'atContext'  => '@context',
+        'atId'       => '@id',
+        'atType'     => '@type',
+        'lastName'   => 'last_name',
+        'firstName'  => 'first_name',
         'middleName' => 'middle_name',
-        'suffix' => 'suffix',
+        'suffix'     => 'suffix',
         'restricted' => 'restricted',
-        'address' => 'address',
-        'phone' => 'phone',
-        'bonds' => 'bonds'
+        'address'    => 'address',
+        'phone'      => 'phone',
+        'bonds'      => 'bonds',
     ];
 
     /**
@@ -216,17 +218,17 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
      * @var string[]
      */
     protected static $setters = [
-        'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'lastName' => 'setLastName',
-        'firstName' => 'setFirstName',
+        'atContext'  => 'setAtContext',
+        'atId'       => 'setAtId',
+        'atType'     => 'setAtType',
+        'lastName'   => 'setLastName',
+        'firstName'  => 'setFirstName',
         'middleName' => 'setMiddleName',
-        'suffix' => 'setSuffix',
+        'suffix'     => 'setSuffix',
         'restricted' => 'setRestricted',
-        'address' => 'setAddress',
-        'phone' => 'setPhone',
-        'bonds' => 'setBonds'
+        'address'    => 'setAddress',
+        'phone'      => 'setPhone',
+        'bonds'      => 'setBonds',
     ];
 
     /**
@@ -235,17 +237,17 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
      * @var string[]
      */
     protected static $getters = [
-        'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'lastName' => 'getLastName',
-        'firstName' => 'getFirstName',
+        'atContext'  => 'getAtContext',
+        'atId'       => 'getAtId',
+        'atType'     => 'getAtType',
+        'lastName'   => 'getLastName',
+        'firstName'  => 'getFirstName',
         'middleName' => 'getMiddleName',
-        'suffix' => 'getSuffix',
+        'suffix'     => 'getSuffix',
         'restricted' => 'getRestricted',
-        'address' => 'getAddress',
-        'phone' => 'getPhone',
-        'bonds' => 'getBonds'
+        'address'    => 'getAddress',
+        'phone'      => 'getPhone',
+        'bonds'      => 'getBonds',
     ];
 
     /**
@@ -289,9 +291,9 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
         return self::$openAPIModelName;
     }
 
-    public const RESTRICTED_NONE = 'none';
+    public const RESTRICTED_NONE     = 'none';
     public const RESTRICTED_APPROVAL = 'approval';
-    public const RESTRICTED_DNB = 'dnb';
+    public const RESTRICTED_DNB      = 'dnb';
 
     /**
      * Gets allowable values of the enum
@@ -344,7 +346,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -373,7 +375,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'restricted', must be one of '%s'",
                 $this->container['restricted'],
-                implode("', '", $allowedValues)
+                implode("', '", $allowedValues),
             );
         }
 
@@ -391,11 +393,10 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -405,7 +406,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -550,8 +551,8 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
             array_push($this->openAPINullablesSetToNull, 'middleName');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('middleName', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('middleName', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -584,8 +585,8 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
             array_push($this->openAPINullablesSetToNull, 'suffix');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('suffix', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index              = array_search('suffix', $nullablesSetToNull);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -623,8 +624,8 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
                 sprintf(
                     "Invalid value '%s' for 'restricted', must be one of '%s'",
                     $restricted,
-                    implode("', '", $allowedValues)
-                )
+                    implode("', '", $allowedValues),
+                ),
             );
         }
         $this->container['restricted'] = $restricted;
@@ -715,11 +716,11 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -727,7 +728,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -745,7 +746,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -757,11 +758,11 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -776,7 +777,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -788,7 +789,7 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -802,5 +803,3 @@ class DefendantJsonldDefendantReadCollectionDefendantReadItem implements ModelIn
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

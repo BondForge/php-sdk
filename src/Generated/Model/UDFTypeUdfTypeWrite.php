@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * UDFTypeUdfTypeWrite
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * UDFTypeUdfTypeWrite Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializable
+final class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,9 +60,9 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
+        'id'   => 'int',
         'name' => 'string',
-        'type' => 'string'
+        'type' => 'string',
     ];
 
     /**
@@ -71,26 +73,26 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
+        'id'   => null,
         'name' => null,
-        'type' => null
+        'type' => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
+        'id'   => false,
         'name' => false,
-        'type' => false
+        'type' => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -119,7 +121,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -127,9 +129,9 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -137,9 +139,9 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -150,7 +152,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -161,7 +163,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -173,9 +175,9 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
+        'id'   => 'id',
         'name' => 'name',
-        'type' => 'type'
+        'type' => 'type',
     ];
 
     /**
@@ -184,9 +186,9 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
+        'id'   => 'setId',
         'name' => 'setName',
-        'type' => 'setType'
+        'type' => 'setType',
     ];
 
     /**
@@ -195,9 +197,9 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
+        'id'   => 'getId',
         'name' => 'getName',
-        'type' => 'getType'
+        'type' => 'getType',
     ];
 
     /**
@@ -241,11 +243,11 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    public const TYPE_TEXT = 'text';
-    public const TYPE_DATE = 'date';
+    public const TYPE_TEXT     = 'text';
+    public const TYPE_DATE     = 'date';
     public const TYPE_DATETIME = 'datetime';
-    public const TYPE_BOOLEAN = 'boolean';
-    public const TYPE_PHONE = 'phone';
+    public const TYPE_BOOLEAN  = 'boolean';
+    public const TYPE_PHONE    = 'phone';
     public const TYPE_US_STATE = 'us_state';
 
     /**
@@ -294,7 +296,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -317,7 +319,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
-                implode("', '", $allowedValues)
+                implode("', '", $allowedValues),
             );
         }
 
@@ -334,7 +336,6 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets id
@@ -418,8 +419,8 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",
                     $type,
-                    implode("', '", $allowedValues)
-                )
+                    implode("', '", $allowedValues),
+                ),
             );
         }
         $this->container['type'] = $type;
@@ -429,11 +430,11 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -441,7 +442,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -459,7 +460,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -471,11 +472,11 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -490,7 +491,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -502,7 +503,7 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -516,5 +517,3 @@ class UDFTypeUdfTypeWrite implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

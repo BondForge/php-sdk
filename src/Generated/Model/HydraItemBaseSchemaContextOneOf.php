@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * HydraItemBaseSchemaContextOneOf
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * HydraItemBaseSchemaContextOneOf Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \JsonSerializable
+final class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,7 +61,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPITypes = [
         'atVocab' => 'string',
-        'hydra' => 'string'
+        'hydra'   => 'string',
     ];
 
     /**
@@ -71,23 +73,23 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPIFormats = [
         'atVocab' => null,
-        'hydra' => null
+        'hydra'   => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'atVocab' => false,
-        'hydra' => false
+        'hydra'   => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -116,7 +118,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -124,9 +126,9 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -134,9 +136,9 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -147,7 +149,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -158,7 +160,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -171,7 +173,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
      */
     protected static $attributeMap = [
         'atVocab' => '@vocab',
-        'hydra' => 'hydra'
+        'hydra'   => 'hydra',
     ];
 
     /**
@@ -181,7 +183,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
      */
     protected static $setters = [
         'atVocab' => 'setAtVocab',
-        'hydra' => 'setHydra'
+        'hydra'   => 'setHydra',
     ];
 
     /**
@@ -191,7 +193,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
      */
     protected static $getters = [
         'atVocab' => 'getAtVocab',
-        'hydra' => 'getHydra'
+        'hydra'   => 'getHydra',
     ];
 
     /**
@@ -277,7 +279,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -306,7 +308,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'hydra', must be one of '%s'",
                 $this->container['hydra'],
-                implode("', '", $allowedValues)
+                implode("', '", $allowedValues),
             );
         }
 
@@ -323,7 +325,6 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets atVocab
@@ -380,8 +381,8 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
                 sprintf(
                     "Invalid value '%s' for 'hydra', must be one of '%s'",
                     $hydra,
-                    implode("', '", $allowedValues)
-                )
+                    implode("', '", $allowedValues),
+                ),
             );
         }
         $this->container['hydra'] = $hydra;
@@ -391,11 +392,11 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -403,7 +404,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -421,7 +422,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -433,11 +434,11 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -452,7 +453,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -464,7 +465,7 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -478,5 +479,3 @@ class HydraItemBaseSchemaContextOneOf implements ModelInterface, ArrayAccess, \J
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

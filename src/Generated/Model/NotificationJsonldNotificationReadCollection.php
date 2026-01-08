@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * NotificationJsonldNotificationReadCollection
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * NotificationJsonldNotificationReadCollection Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class NotificationJsonldNotificationReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
+final class NotificationJsonldNotificationReadCollection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,8 +61,8 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
       */
     protected static $openAPITypes = [
         'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string'
+        'atId'      => 'string',
+        'atType'    => 'string',
     ];
 
     /**
@@ -72,25 +74,25 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
       */
     protected static $openAPIFormats = [
         'atContext' => null,
-        'atId' => null,
-        'atType' => null
+        'atId'      => null,
+        'atType'    => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'atContext' => false,
-        'atId' => false,
-        'atType' => false
+        'atId'      => false,
+        'atType'    => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -119,7 +121,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -127,9 +129,9 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -137,9 +139,9 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -150,7 +152,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -161,7 +163,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -174,8 +176,8 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
      */
     protected static $attributeMap = [
         'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type'
+        'atId'      => '@id',
+        'atType'    => '@type',
     ];
 
     /**
@@ -185,8 +187,8 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
      */
     protected static $setters = [
         'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType'
+        'atId'      => 'setAtId',
+        'atType'    => 'setAtType',
     ];
 
     /**
@@ -196,8 +198,8 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
      */
     protected static $getters = [
         'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType'
+        'atId'      => 'getAtId',
+        'atType'    => 'getAtType',
     ];
 
     /**
@@ -241,7 +243,6 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -271,7 +272,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -295,6 +296,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -309,11 +311,10 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -323,7 +324,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -393,11 +394,11 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -405,7 +406,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -423,7 +424,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -435,11 +436,11 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -454,7 +455,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -466,7 +467,7 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -480,5 +481,3 @@ class NotificationJsonldNotificationReadCollection implements ModelInterface, Ar
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

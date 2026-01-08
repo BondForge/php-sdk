@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * HydraCollectionBaseSchemaAllOfView
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * HydraCollectionBaseSchemaAllOfView Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess, \JsonSerializable
+final class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -58,12 +60,12 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'atId' => 'string',
-        'atType' => 'string',
-        'first' => 'string',
-        'last' => 'string',
+        'atId'     => 'string',
+        'atType'   => 'string',
+        'first'    => 'string',
+        'last'     => 'string',
         'previous' => 'string',
-        'next' => 'string'
+        'next'     => 'string',
     ];
 
     /**
@@ -74,32 +76,32 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'atId' => 'iri-reference',
-        'atType' => null,
-        'first' => 'iri-reference',
-        'last' => 'iri-reference',
+        'atId'     => 'iri-reference',
+        'atType'   => null,
+        'first'    => 'iri-reference',
+        'last'     => 'iri-reference',
         'previous' => 'iri-reference',
-        'next' => 'iri-reference'
+        'next'     => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
-        'atId' => false,
-        'atType' => false,
-        'first' => false,
-        'last' => false,
+        'atId'     => false,
+        'atType'   => false,
+        'first'    => false,
+        'last'     => false,
         'previous' => false,
-        'next' => false
+        'next'     => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -128,7 +130,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -136,9 +138,9 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -146,9 +148,9 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -159,7 +161,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -170,7 +172,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -182,12 +184,12 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'atId' => '@id',
-        'atType' => '@type',
-        'first' => 'first',
-        'last' => 'last',
+        'atId'     => '@id',
+        'atType'   => '@type',
+        'first'    => 'first',
+        'last'     => 'last',
         'previous' => 'previous',
-        'next' => 'next'
+        'next'     => 'next',
     ];
 
     /**
@@ -196,12 +198,12 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'first' => 'setFirst',
-        'last' => 'setLast',
+        'atId'     => 'setAtId',
+        'atType'   => 'setAtType',
+        'first'    => 'setFirst',
+        'last'     => 'setLast',
         'previous' => 'setPrevious',
-        'next' => 'setNext'
+        'next'     => 'setNext',
     ];
 
     /**
@@ -210,12 +212,12 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'first' => 'getFirst',
-        'last' => 'getLast',
+        'atId'     => 'getAtId',
+        'atType'   => 'getAtType',
+        'first'    => 'getFirst',
+        'last'     => 'getLast',
         'previous' => 'getPrevious',
-        'next' => 'getNext'
+        'next'     => 'getNext',
     ];
 
     /**
@@ -259,7 +261,6 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -292,7 +293,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -323,7 +324,6 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets atId
@@ -489,11 +489,11 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -501,7 +501,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -519,7 +519,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -531,11 +531,11 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -550,7 +550,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -562,7 +562,7 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -576,5 +576,3 @@ class HydraCollectionBaseSchemaAllOfView implements ModelInterface, ArrayAccess,
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

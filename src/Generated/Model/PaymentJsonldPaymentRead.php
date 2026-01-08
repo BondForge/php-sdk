@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * PaymentJsonldPaymentRead
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * PaymentJsonldPaymentRead Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSerializable
+final class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,11 +61,11 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'atContext' => '\BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext',
-        'atId' => 'string',
-        'atType' => 'string',
-        'id' => 'int',
-        'amount' => 'float',
-        'defendant' => 'string'
+        'atId'      => 'string',
+        'atType'    => 'string',
+        'id'        => 'int',
+        'amount'    => 'float',
+        'defendant' => 'string',
     ];
 
     /**
@@ -75,31 +77,31 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'atContext' => null,
-        'atId' => null,
-        'atType' => null,
-        'id' => null,
-        'amount' => null,
-        'defendant' => 'iri-reference'
+        'atId'      => null,
+        'atType'    => null,
+        'id'        => null,
+        'amount'    => null,
+        'defendant' => 'iri-reference',
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'atContext' => false,
-        'atId' => false,
-        'atType' => false,
-        'id' => false,
-        'amount' => false,
-        'defendant' => false
+        'atId'      => false,
+        'atType'    => false,
+        'id'        => false,
+        'amount'    => false,
+        'defendant' => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -128,7 +130,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -136,9 +138,9 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -146,9 +148,9 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -159,7 +161,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -170,7 +172,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -183,11 +185,11 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $attributeMap = [
         'atContext' => '@context',
-        'atId' => '@id',
-        'atType' => '@type',
-        'id' => 'id',
-        'amount' => 'amount',
-        'defendant' => 'defendant'
+        'atId'      => '@id',
+        'atType'    => '@type',
+        'id'        => 'id',
+        'amount'    => 'amount',
+        'defendant' => 'defendant',
     ];
 
     /**
@@ -197,11 +199,11 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $setters = [
         'atContext' => 'setAtContext',
-        'atId' => 'setAtId',
-        'atType' => 'setAtType',
-        'id' => 'setId',
-        'amount' => 'setAmount',
-        'defendant' => 'setDefendant'
+        'atId'      => 'setAtId',
+        'atType'    => 'setAtType',
+        'id'        => 'setId',
+        'amount'    => 'setAmount',
+        'defendant' => 'setDefendant',
     ];
 
     /**
@@ -211,11 +213,11 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $getters = [
         'atContext' => 'getAtContext',
-        'atId' => 'getAtId',
-        'atType' => 'getAtType',
-        'id' => 'getId',
-        'amount' => 'getAmount',
-        'defendant' => 'getDefendant'
+        'atId'      => 'getAtId',
+        'atType'    => 'getAtType',
+        'id'        => 'getId',
+        'amount'    => 'getAmount',
+        'defendant' => 'getDefendant',
     ];
 
     /**
@@ -259,7 +261,6 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -292,7 +293,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -316,6 +317,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['atType'] === null) {
             $invalidProperties[] = "'atType' can't be null";
         }
+
         return $invalidProperties;
     }
 
@@ -330,11 +332,10 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
-
     /**
      * Gets atContext
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null
+     * @return HydraItemBaseSchemaContext|null
      */
     public function getAtContext()
     {
@@ -344,7 +345,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets atContext
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraItemBaseSchemaContext|null $atContext atContext
+     * @param HydraItemBaseSchemaContext|null $atContext atContext
      *
      * @return self
      */
@@ -495,11 +496,11 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -507,7 +508,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -525,7 +526,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -537,11 +538,11 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -556,7 +557,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -568,7 +569,7 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -582,5 +583,3 @@ class PaymentJsonldPaymentRead implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

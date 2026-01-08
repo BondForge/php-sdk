@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * HydraCollectionBaseSchema
  *
@@ -29,8 +31,8 @@
 
 namespace BondForge\Sdk\Generated\Model;
 
-use \ArrayAccess;
-use \BondForge\Sdk\Generated\ObjectSerializer;
+use ArrayAccess;
+use BondForge\Sdk\Generated\ObjectSerializer;
 
 /**
  * HydraCollectionBaseSchema Class Doc Comment
@@ -41,7 +43,7 @@ use \BondForge\Sdk\Generated\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSerializable
+final class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -59,8 +61,8 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'totalItems' => 'int',
-        'search' => '\BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearch',
-        'view' => '\BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaAllOfView'
+        'search'     => '\BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearch',
+        'view'       => '\BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaAllOfView',
     ];
 
     /**
@@ -72,25 +74,25 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'totalItems' => null,
-        'search' => null,
-        'view' => null
+        'search'     => null,
+        'view'       => null,
     ];
 
     /**
       * Array of nullable properties. Used for (de)serialization
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected static array $openAPINullables = [
         'totalItems' => false,
-        'search' => false,
-        'view' => false
+        'search'     => false,
+        'view'       => false,
     ];
 
     /**
       * If a nullable field gets set to null, insert it here
       *
-      * @var boolean[]
+      * @var bool[]
       */
     protected array $openAPINullablesSetToNull = [];
 
@@ -119,7 +121,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @return array
      */
-    protected static function openAPINullables(): array
+    protected static function openAPINullables() : array
     {
         return self::$openAPINullables;
     }
@@ -127,9 +129,9 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Array of nullable field names deliberately set to null
      *
-     * @return boolean[]
+     * @return bool[]
      */
-    private function getOpenAPINullablesSetToNull(): array
+    private function getOpenAPINullablesSetToNull() : array
     {
         return $this->openAPINullablesSetToNull;
     }
@@ -137,9 +139,9 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Setter - Array of nullable field names deliberately set to null
      *
-     * @param boolean[] $openAPINullablesSetToNull
+     * @param bool[] $openAPINullablesSetToNull
      */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
+    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull) : void
     {
         $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
     }
@@ -150,7 +152,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
      * @param string $property
      * @return bool
      */
-    public static function isNullable(string $property): bool
+    public static function isNullable(string $property) : bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -161,7 +163,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
      * @param string $property
      * @return bool
      */
-    public function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property) : bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -174,8 +176,8 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $attributeMap = [
         'totalItems' => 'totalItems',
-        'search' => 'search',
-        'view' => 'view'
+        'search'     => 'search',
+        'view'       => 'view',
     ];
 
     /**
@@ -185,8 +187,8 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $setters = [
         'totalItems' => 'setTotalItems',
-        'search' => 'setSearch',
-        'view' => 'setView'
+        'search'     => 'setSearch',
+        'view'       => 'setView',
     ];
 
     /**
@@ -196,8 +198,8 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $getters = [
         'totalItems' => 'getTotalItems',
-        'search' => 'getSearch',
-        'view' => 'getView'
+        'search'     => 'getSearch',
+        'view'       => 'getView',
     ];
 
     /**
@@ -241,7 +243,6 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-
     /**
      * Associative array for storing property values
      *
@@ -271,7 +272,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     * @param array  $fields
     * @param mixed  $defaultValue
     */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    private function setIfExists(string $variableName, array $fields, $defaultValue) : void
     {
         if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
             $this->openAPINullablesSetToNull[] = $variableName;
@@ -306,7 +307,6 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets totalItems
@@ -343,7 +343,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets search
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearch|null
+     * @return HydraCollectionBaseSchemaNoPaginationSearch|null
      */
     public function getSearch()
     {
@@ -353,7 +353,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets search
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaNoPaginationSearch|null $search search
+     * @param HydraCollectionBaseSchemaNoPaginationSearch|null $search search
      *
      * @return self
      */
@@ -370,7 +370,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets view
      *
-     * @return \BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaAllOfView|null
+     * @return HydraCollectionBaseSchemaAllOfView|null
      */
     public function getView()
     {
@@ -380,7 +380,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets view
      *
-     * @param \BondForge\Sdk\Generated\Model\HydraCollectionBaseSchemaAllOfView|null $view view
+     * @param HydraCollectionBaseSchemaAllOfView|null $view view
      *
      * @return self
      */
@@ -396,11 +396,11 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Returns true if offset exists. False otherwise.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
-     * @return boolean
+     * @return bool
      */
-    public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset) : bool
     {
         return isset($this->container[$offset]);
     }
@@ -408,7 +408,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return mixed|null
      */
@@ -426,7 +426,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -438,11 +438,11 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Unsets offset.
      *
-     * @param integer|string $offset Offset
+     * @param int|string $offset Offset
      *
      * @return void
      */
-    public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset) : void
     {
         unset($this->container[$offset]);
     }
@@ -457,7 +457,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -469,7 +469,7 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT,
         );
     }
 
@@ -483,5 +483,3 @@ class HydraCollectionBaseSchema implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
